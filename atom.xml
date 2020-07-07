@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://xdmqp.tech/"/>
+  <link href="https://xdmqp.github.io/"/>
   <updated>2020-07-07T00:56:36.126Z</updated>
-  <id>http://xdmqp.tech/</id>
+  <id>https://xdmqp.github.io/</id>
   
   <author>
     <name>登高必自</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Markdown基本语法</title>
-    <link href="http://xdmqp.tech/2020/07/07/markdown/"/>
-    <id>http://xdmqp.tech/2020/07/07/markdown/</id>
+    <link href="https://xdmqp.github.io/2020/07/07/markdown/"/>
+    <id>https://xdmqp.github.io/2020/07/07/markdown/</id>
     <published>2020-07-07T00:39:09.000Z</published>
     <updated>2020-07-07T00:56:36.126Z</updated>
     
@@ -36,10 +36,10 @@
     </summary>
     
     
-      <category term="markdown" scheme="http://xdmqp.tech/categories/markdown/"/>
+      <category term="markdown" scheme="https://xdmqp.github.io/categories/markdown/"/>
     
     
-      <category term="markdown" scheme="http://xdmqp.tech/tags/markdown/"/>
+      <category term="markdown" scheme="https://xdmqp.github.io/tags/markdown/"/>
     
   </entry>
   
