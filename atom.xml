@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdmqp.github.io/"/>
-  <updated>2020-07-08T00:50:05.892Z</updated>
+  <updated>2020-07-10T01:02:40.360Z</updated>
   <id>https://xdmqp.github.io/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Markdown基本语法</title>
-    <link href="https://xdmqp.github.io/2020/07/08/markdown/"/>
-    <id>https://xdmqp.github.io/2020/07/08/markdown/</id>
+    <title>强化学习</title>
+    <link href="https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</id>
     <published>2020-07-08T00:37:18.000Z</published>
-    <updated>2020-07-08T00:50:05.892Z</updated>
+    <updated>2020-07-10T01:02:40.360Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="强化学习概念"><a href="#强化学习概念" class="headerlink" title="强化学习概念"></a>强化学习概念</h1><p>强化学习是机器学习中的一类，类似于无监督学习，强化学习是在没有样本的情况下智能体不断与环境进行交互，不断积累经验从而获取最佳策略，在环境中达到自身的目的，这是一种试错性的学习。</p><h1 id="强化学习方法"><a href="#强化学习方法" class="headerlink" title="强化学习方法"></a>强化学习方法</h1><ul><li>根据是否需要理解所处的环境可以将方法分为：<strong>Model-Free RL（Q Learning、Sarsa、Policy Gradients等）和Model-Based RL</strong>。Model-Based RL在Model-Free基础上增加了环境建模，并且能够通过想象来判断接下来的所有情况，选择其中最好的一种情况，并依据这种情况才去下一步策略</li><li>根据选择动作时的参考依据可以将方法分为：<strong>基于概率方法（Policy Gradients等）和基于价值方法（Q Learning、Sarsa等）</strong>。基于概率方法是通过分析所处的环境，直接输出下一步要采用的各种动作的概率，然后根据概率采用某一个动作，即每个动作都可能被选中，只是概率不同。基于价值方法是直接输出所有动作的价值，然后根据最高价值来选择动作。<strong>通过结合两种方法的优势，产生一种新方法：Actor-Critic，actor基于概率做出动作，critic对做出的动作给出动作价值。</strong></li><li>根据更新方式可以将方法分为：<strong>回合更新方法（Mote-carlo learning、基础 Policy Gradients等）和单步更新方法（Q Learning、Sarsa和升级Policy Gradients）</strong>。回合更新方法是在执行完一个行为序列后，将梯度收集到一起，再进行更新。单步更新方法是指每一次和环境交互后，立即更新参数。</li><li>根据交互过程中数据的使用方式可以将方法分为：<strong>在线学习方法（Sarsa、Sarsa Lambda）和离线学习方法（Q Learning）</strong>。在线学习方法是指在完成一次交互后，立即用本次交互得到的经验更新行为准则。离线学习方法是先将n次交互的经验存储起来，而后再从存储的经验中更新行为准则。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;强化学习概念&quot;&gt;&lt;a href=&quot;#强化学习概念&quot; class=&quot;headerlink&quot; title=&quot;强化学习概念&quot;&gt;&lt;/a&gt;强化学习概念&lt;/h1&gt;&lt;p&gt;强化学习是机器学习中的一类，类似于无监督学习，强化学习是在没有样本的情况下智能体不断与环境进行交互，不断积累
+      
+    
+    </summary>
+    
+    
+      <category term="强化学习" scheme="https://xdmqp.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="强化学习" scheme="https://xdmqp.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="概念" scheme="https://xdmqp.github.io/tags/%E6%A6%82%E5%BF%B5/"/>
+    
+      <category term="方法" scheme="https://xdmqp.github.io/tags/%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown基本语法</title>
+    <link href="https://xdmqp.github.io/2020/07/07/markdown/"/>
+    <id>https://xdmqp.github.io/2020/07/07/markdown/</id>
+    <published>2020-07-07T00:37:18.000Z</published>
+    <updated>2020-07-08T08:24:10.001Z</updated>
     
     <content type="html"><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure><p>效果如下：</p><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr><h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br><span class="line">*斜体*</span><br><span class="line">***斜体加粗***</span><br><span class="line">&lt;u&gt;下划线&lt;&#x2F;u&gt;</span><br><span class="line">~~删除线~~</span><br></pre></td></tr></table></figure><p>效果如下：<br><strong>加粗</strong><br><em>斜体</em><br><strong><em>斜体加粗</em></strong><br><u>下划线</u><br><del>删除线</del>  </p><hr><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;这就是引用内容</span><br></pre></td></tr></table></figure><p>效果如下:</p><blockquote><p>这就是引用内容</p></blockquote><hr><h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">****</span><br><span class="line">上面是分割线</span><br></pre></td></tr></table></figure><p>效果如下:  </p><hr><p>上面是分割线</p><hr><h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* 符号列表1</span><br><span class="line">* 符号列表2</span><br><span class="line">* 符号列表3</span><br><span class="line"></span><br><span class="line">1. 数字列表1</span><br><span class="line">2. 数字列表2</span><br><span class="line">3. 数字列表3</span><br></pre></td></tr></table></figure><p>效果如下:</p><ul><li>符号列表1</li><li>符号列表2</li><li>符号列表3</li></ul><ol><li>数字列表1  </li><li>数字列表2  </li><li>数字列表3  </li></ol><hr><h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[我的博客](https:&#x2F;&#x2F;xdmqp.github.io)</span><br></pre></td></tr></table></figure><p>效果如下：<br><a href="https://xdmqp.github.io">我的博客</a></p><hr><h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image](http:&#x2F;&#x2F;i2.tiimg.com&#x2F;722773&#x2F;31f5d6a6c4e7a5fe.jpg)</span><br></pre></td></tr></table></figure><p>效果如下:</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://i2.tiimg.com/722773/31f5d6a6c4e7a5fe.jpg" alt="image" title="">                </div>                <div class="image-caption">image</div>            </figure><hr><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 姓名 | 性别 | 年龄 |</span><br><span class="line">|  --- |:--:|:--:|</span><br><span class="line">| 李明 | 男 | 23 |</span><br><span class="line">| 李华 | 男 | 20 |</span><br></pre></td></tr></table></figure><p>效果如下：</p><table><thead><tr><th>姓名</th><th align="center">性别</th><th align="center">年龄</th></tr></thead><tbody><tr><td>李明</td><td align="center">男</td><td align="center">23</td></tr><tr><td>李华</td><td align="center">男</td><td align="center">20</td></tr></tbody></table><p><strong>PS：表格与前文要空两行才能正常显示</strong></p><hr><h1 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h1><p>示例:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">x&#x3D;a+b</span><br><span class="line">$$</span><br></pre></td></tr></table></figure><p>效果如下：</p><p>$$<br>x=a+b<br>$$</p>]]></content>
     
@@ -40,21 +70,6 @@
     
     
       <category term="markdown" scheme="https://xdmqp.github.io/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>强化学习</title>
-    <link href="https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
-    <id>https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</id>
-    <published>2020-07-08T00:37:18.000Z</published>
-    <updated>2020-07-08T00:37:18.786Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
     
   </entry>
   
