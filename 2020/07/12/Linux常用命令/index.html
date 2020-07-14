@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux常用命令 | 技术修炼笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Linux命令">
+    <meta name="description" content="ls：表示列出当前目录下的文件，ls的命令补充如下：​    -l：列出文件详细信息​    -t：以时间排序，默认最新修改的文件在上面​    -r：倒序输出​    -x：按列输出，横向排序​    -u：按照文件上次被访问的时间排序​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件 grep：正则表达式搜索文本用法：grep [命令补充] pattern fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="技术修炼笔记">
+<meta property="og:description" content="ls：表示列出当前目录下的文件，ls的命令补充如下：​    -l：列出文件详细信息​    -t：以时间排序，默认最新修改的文件在上面​    -r：倒序输出​    -x：按列输出，横向排序​    -u：按照文件上次被访问的时间排序​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件 grep：正则表达式搜索文本用法：grep [命令补充] pattern fi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png">
+<meta property="article:published_time" content="2020-07-12T07:01:49.000Z">
+<meta property="article:modified_time" content="2020-07-14T02:31:14.416Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Linux命令">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="技术修炼笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux常用命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux常用命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-12T07:01:49.000Z" itemprop="datePublished" class="page-time">
+  2020-07-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ls：表示列出当前目录下的文件，ls的命令补充如下："><span class="post-toc-number">1.</span> <span class="post-toc-text">ls：表示列出当前目录下的文件，ls的命令补充如下：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#grep：正则表达式搜索文本"><span class="post-toc-number">2.</span> <span class="post-toc-text">grep：正则表达式搜索文本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-vi：文件编辑"><span class="post-toc-number">3.</span> <span class="post-toc-text">vim&#x2F;vi：文件编辑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#命令模式下常用命令"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">命令模式下常用命令</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#底线命令模式下常用命令"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">底线命令模式下常用命令</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Linux常用命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-12 15:01:49" datetime="2020-07-12T07:01:49.000Z"  itemprop="datePublished">2020-07-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="ls：表示列出当前目录下的文件，ls的命令补充如下："><a href="#ls：表示列出当前目录下的文件，ls的命令补充如下：" class="headerlink" title="ls：表示列出当前目录下的文件，ls的命令补充如下："></a><strong>ls：表示列出当前目录下的文件，ls的命令补充如下：</strong></h4><p>​    -l：列出文件详细信息<br>​    -t：以时间排序，默认最新修改的文件在上面<br>​    -r：倒序输出<br>​    -x：按列输出，横向排序<br>​    -u：按照文件上次被访问的时间排序<br>​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</p>
+<h4 id="grep：正则表达式搜索文本"><a href="#grep：正则表达式搜索文本" class="headerlink" title="grep：正则表达式搜索文本"></a><strong>grep：正则表达式搜索文本</strong></h4><p>用法：grep [命令补充] pattern files<br>    -r：搜索子目录<br>    -n：显示匹配行和行号<br>    -l：只列出匹配的文件名<br>    -i：不区分大小写，默认区分大小写<br>    -w：只匹配整个单词，而不是字符串的一部分<br>    grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行<br>    grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p>
+<h4 id="vim-vi：文件编辑"><a href="#vim-vi：文件编辑" class="headerlink" title="vim/vi：文件编辑"></a><strong>vim/vi：文件编辑</strong></h4><p>vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）， 三种模式的切换方式如下图所示</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="**vim/vi工作模式切换**" title="">
+                </div>
+                <div class="image-caption">**vim/vi工作模式切换**</div>
+            </figure>
+
+<h5 id="命令模式下常用命令"><a href="#命令模式下常用命令" class="headerlink" title="命令模式下常用命令"></a>命令模式下常用命令</h5><ol>
+<li>i:进入输入模式，从光标当前位置开始输入</li>
+<li>a:进入输入模式，从光标所在位置的下一个位置开始输入</li>
+<li>o：进入输入模式，插入新的一行，从行首开始输入</li>
+<li><strong>0:移动光标到文件开头</strong></li>
+<li><strong>G：移动光标到文件最后</strong></li>
+<li>$：移动光标到所在行行尾</li>
+<li>^：移动光标到所在行行首</li>
+<li>#l：移动光标到当前行的第#个位置</li>
+<li>x:删除光标所在位置后面的一个字符</li>
+<li>X：删除光标所在位置前面的一个字符</li>
+<li><strong>dd：删除光标所在行</strong></li>
+<li>#dd：从光标所在行开始删除#行</li>
+<li><strong>ctrl+g：列出光标所在行行号</strong></li>
+<li><strong>#G：移动到光标只文件的第#行行首</strong></li>
+<li>u：撤销操作</li>
+<li>ctrl+r：恢复操作</li>
+</ol>
+<h5 id="底线命令模式下常用命令"><a href="#底线命令模式下常用命令" class="headerlink" title="底线命令模式下常用命令"></a>底线命令模式下常用命令</h5><ol>
+<li><strong>set nu：显示文件行号</strong></li>
+<li><strong>#：跳到文件中的第#行</strong></li>
+<li><strong>/关键字：查找指定关键字，按n会继续往后查找</strong></li>
+<li>w：保存文件</li>
+<li><strong>q：退出文件编辑</strong></li>
+<li><strong>wq：保存并退出</strong></li>
+<li><strong>q!：放弃一切更改，强制退出</strong></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-07-14T02:31:14.416Z" itemprop="dateUpdated">2020-07-14 10:31:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank" rel="external">https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&title=《Linux常用命令》 — 技术修炼笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&title=《Linux常用命令》 — 技术修炼笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux常用命令》 — 技术修炼笔记&url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">强化学习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&title=《Linux常用命令》 — 技术修炼笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&title=《Linux常用命令》 — 技术修炼笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux常用命令》 — 技术修炼笔记&url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

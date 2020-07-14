@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdmqp.github.io/"/>
-  <updated>2020-07-10T01:02:40.360Z</updated>
+  <updated>2020-07-14T02:31:14.416Z</updated>
   <id>https://xdmqp.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux常用命令</title>
+    <link href="https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2020-07-12T07:01:49.000Z</published>
+    <updated>2020-07-14T02:31:14.416Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="ls：表示列出当前目录下的文件，ls的命令补充如下："><a href="#ls：表示列出当前目录下的文件，ls的命令补充如下：" class="headerlink" title="ls：表示列出当前目录下的文件，ls的命令补充如下："></a><strong>ls：表示列出当前目录下的文件，ls的命令补充如下：</strong></h4><p>​    -l：列出文件详细信息<br>​    -t：以时间排序，默认最新修改的文件在上面<br>​    -r：倒序输出<br>​    -x：按列输出，横向排序<br>​    -u：按照文件上次被访问的时间排序<br>​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</p><h4 id="grep：正则表达式搜索文本"><a href="#grep：正则表达式搜索文本" class="headerlink" title="grep：正则表达式搜索文本"></a><strong>grep：正则表达式搜索文本</strong></h4><p>用法：grep [命令补充] pattern files<br>    -r：搜索子目录<br>    -n：显示匹配行和行号<br>    -l：只列出匹配的文件名<br>    -i：不区分大小写，默认区分大小写<br>    -w：只匹配整个单词，而不是字符串的一部分<br>    grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行<br>    grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p><h4 id="vim-vi：文件编辑"><a href="#vim-vi：文件编辑" class="headerlink" title="vim/vi：文件编辑"></a><strong>vim/vi：文件编辑</strong></h4><p>vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）， 三种模式的切换方式如下图所示</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="**vim/vi工作模式切换**" title="">                </div>                <div class="image-caption">**vim/vi工作模式切换**</div>            </figure><h5 id="命令模式下常用命令"><a href="#命令模式下常用命令" class="headerlink" title="命令模式下常用命令"></a>命令模式下常用命令</h5><ol><li>i:进入输入模式，从光标当前位置开始输入</li><li>a:进入输入模式，从光标所在位置的下一个位置开始输入</li><li>o：进入输入模式，插入新的一行，从行首开始输入</li><li><strong>0:移动光标到文件开头</strong></li><li><strong>G：移动光标到文件最后</strong></li><li>$：移动光标到所在行行尾</li><li>^：移动光标到所在行行首</li><li>#l：移动光标到当前行的第#个位置</li><li>x:删除光标所在位置后面的一个字符</li><li>X：删除光标所在位置前面的一个字符</li><li><strong>dd：删除光标所在行</strong></li><li>#dd：从光标所在行开始删除#行</li><li><strong>ctrl+g：列出光标所在行行号</strong></li><li><strong>#G：移动到光标只文件的第#行行首</strong></li><li>u：撤销操作</li><li>ctrl+r：恢复操作</li></ol><h5 id="底线命令模式下常用命令"><a href="#底线命令模式下常用命令" class="headerlink" title="底线命令模式下常用命令"></a>底线命令模式下常用命令</h5><ol><li><strong>set nu：显示文件行号</strong></li><li><strong>#：跳到文件中的第#行</strong></li><li><strong>/关键字：查找指定关键字，按n会继续往后查找</strong></li><li>w：保存文件</li><li><strong>q：退出文件编辑</strong></li><li><strong>wq：保存并退出</strong></li><li><strong>q!：放弃一切更改，强制退出</strong></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;ls：表示列出当前目录下的文件，ls的命令补充如下：&quot;&gt;&lt;a href=&quot;#ls：表示列出当前目录下的文件，ls的命令补充如下：&quot; class=&quot;headerlink&quot; title=&quot;ls：表示列出当前目录下的文件，ls的命令补充如下：&quot;&gt;&lt;/a&gt;&lt;strong&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://xdmqp.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://xdmqp.github.io/tags/Linux/"/>
+    
+      <category term="Linux命令" scheme="https://xdmqp.github.io/tags/Linux%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>强化学习</title>
@@ -51,7 +79,7 @@
     <link href="https://xdmqp.github.io/2020/07/07/markdown/"/>
     <id>https://xdmqp.github.io/2020/07/07/markdown/</id>
     <published>2020-07-07T00:37:18.000Z</published>
-    <updated>2020-07-08T08:24:10.001Z</updated>
+    <updated>2020-07-14T02:29:07.196Z</updated>
     
     <content type="html"><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure><p>效果如下：</p><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr><h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br><span class="line">*斜体*</span><br><span class="line">***斜体加粗***</span><br><span class="line">&lt;u&gt;下划线&lt;&#x2F;u&gt;</span><br><span class="line">~~删除线~~</span><br></pre></td></tr></table></figure><p>效果如下：<br><strong>加粗</strong><br><em>斜体</em><br><strong><em>斜体加粗</em></strong><br><u>下划线</u><br><del>删除线</del>  </p><hr><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;这就是引用内容</span><br></pre></td></tr></table></figure><p>效果如下:</p><blockquote><p>这就是引用内容</p></blockquote><hr><h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">****</span><br><span class="line">上面是分割线</span><br></pre></td></tr></table></figure><p>效果如下:  </p><hr><p>上面是分割线</p><hr><h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* 符号列表1</span><br><span class="line">* 符号列表2</span><br><span class="line">* 符号列表3</span><br><span class="line"></span><br><span class="line">1. 数字列表1</span><br><span class="line">2. 数字列表2</span><br><span class="line">3. 数字列表3</span><br></pre></td></tr></table></figure><p>效果如下:</p><ul><li>符号列表1</li><li>符号列表2</li><li>符号列表3</li></ul><ol><li>数字列表1  </li><li>数字列表2  </li><li>数字列表3  </li></ol><hr><h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[我的博客](https:&#x2F;&#x2F;xdmqp.github.io)</span><br></pre></td></tr></table></figure><p>效果如下：<br><a href="https://xdmqp.github.io">我的博客</a></p><hr><h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image](http:&#x2F;&#x2F;i2.tiimg.com&#x2F;722773&#x2F;31f5d6a6c4e7a5fe.jpg)</span><br></pre></td></tr></table></figure><p>效果如下:</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://i2.tiimg.com/722773/31f5d6a6c4e7a5fe.jpg" alt="image" title="">                </div>                <div class="image-caption">image</div>            </figure><hr><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 姓名 | 性别 | 年龄 |</span><br><span class="line">|  --- |:--:|:--:|</span><br><span class="line">| 李明 | 男 | 23 |</span><br><span class="line">| 李华 | 男 | 20 |</span><br></pre></td></tr></table></figure><p>效果如下：</p><table><thead><tr><th>姓名</th><th align="center">性别</th><th align="center">年龄</th></tr></thead><tbody><tr><td>李明</td><td align="center">男</td><td align="center">23</td></tr><tr><td>李华</td><td align="center">男</td><td align="center">20</td></tr></tbody></table><p><strong>PS：表格与前文要空两行才能正常显示</strong></p><hr><h1 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h1><p>示例:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">x&#x3D;a+b</span><br><span class="line">$$</span><br></pre></td></tr></table></figure><p>效果如下：</p><p>$$<br>x=a+b<br>$$</p>]]></content>
     
@@ -69,7 +97,7 @@
       <category term="Markdown" scheme="https://xdmqp.github.io/categories/Markdown/"/>
     
     
-      <category term="markdown" scheme="https://xdmqp.github.io/tags/markdown/"/>
+      <category term="Markdown" scheme="https://xdmqp.github.io/tags/Markdown/"/>
     
   </entry>
   
