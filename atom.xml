@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdmqp.github.io/"/>
-  <updated>2020-07-14T02:31:14.416Z</updated>
+  <updated>2020-07-21T03:30:37.478Z</updated>
   <id>https://xdmqp.github.io/</id>
   
   <author>
@@ -17,19 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Linux常用命令</title>
-    <link href="https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
-    <published>2020-07-12T07:01:49.000Z</published>
-    <updated>2020-07-14T02:31:14.416Z</updated>
+    <title>神经网络反向传播过程</title>
+    <link href="https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/"/>
+    <id>https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-07-19T02:08:25.000Z</published>
+    <updated>2020-07-21T03:30:37.478Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="ls：表示列出当前目录下的文件，ls的命令补充如下："><a href="#ls：表示列出当前目录下的文件，ls的命令补充如下：" class="headerlink" title="ls：表示列出当前目录下的文件，ls的命令补充如下："></a><strong>ls：表示列出当前目录下的文件，ls的命令补充如下：</strong></h4><p>​    -l：列出文件详细信息<br>​    -t：以时间排序，默认最新修改的文件在上面<br>​    -r：倒序输出<br>​    -x：按列输出，横向排序<br>​    -u：按照文件上次被访问的时间排序<br>​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</p><h4 id="grep：正则表达式搜索文本"><a href="#grep：正则表达式搜索文本" class="headerlink" title="grep：正则表达式搜索文本"></a><strong>grep：正则表达式搜索文本</strong></h4><p>用法：grep [命令补充] pattern files<br>    -r：搜索子目录<br>    -n：显示匹配行和行号<br>    -l：只列出匹配的文件名<br>    -i：不区分大小写，默认区分大小写<br>    -w：只匹配整个单词，而不是字符串的一部分<br>    grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行<br>    grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p><h4 id="vim-vi：文件编辑"><a href="#vim-vi：文件编辑" class="headerlink" title="vim/vi：文件编辑"></a><strong>vim/vi：文件编辑</strong></h4><p>vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）， 三种模式的切换方式如下图所示</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="**vim/vi工作模式切换**" title="">                </div>                <div class="image-caption">**vim/vi工作模式切换**</div>            </figure><h5 id="命令模式下常用命令"><a href="#命令模式下常用命令" class="headerlink" title="命令模式下常用命令"></a>命令模式下常用命令</h5><ol><li>i:进入输入模式，从光标当前位置开始输入</li><li>a:进入输入模式，从光标所在位置的下一个位置开始输入</li><li>o：进入输入模式，插入新的一行，从行首开始输入</li><li><strong>0:移动光标到文件开头</strong></li><li><strong>G：移动光标到文件最后</strong></li><li>$：移动光标到所在行行尾</li><li>^：移动光标到所在行行首</li><li>#l：移动光标到当前行的第#个位置</li><li>x:删除光标所在位置后面的一个字符</li><li>X：删除光标所在位置前面的一个字符</li><li><strong>dd：删除光标所在行</strong></li><li>#dd：从光标所在行开始删除#行</li><li><strong>ctrl+g：列出光标所在行行号</strong></li><li><strong>#G：移动到光标只文件的第#行行首</strong></li><li>u：撤销操作</li><li>ctrl+r：恢复操作</li></ol><h5 id="底线命令模式下常用命令"><a href="#底线命令模式下常用命令" class="headerlink" title="底线命令模式下常用命令"></a>底线命令模式下常用命令</h5><ol><li><strong>set nu：显示文件行号</strong></li><li><strong>#：跳到文件中的第#行</strong></li><li><strong>/关键字：查找指定关键字，按n会继续往后查找</strong></li><li>w：保存文件</li><li><strong>q：退出文件编辑</strong></li><li><strong>wq：保存并退出</strong></li><li><strong>q!：放弃一切更改，强制退出</strong></li></ol>]]></content>
+    <content type="html"><![CDATA[<p><img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络"></p><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p><p><strong>上述神经网络中的训练过程如下：</strong></p><p><strong>Step1 前向传播</strong></p><ol><li>计算神经元h1、h2的输入加权和</li></ol><p>$$<br>ne{t_{h1}} = w1\times i1 + w2\times i2 + b1<br>$$</p><p>$$<br>ne{t_{h2}} = w3 \times i1 + w4 \times i2 + b1<br>$$</p><ol start="2"><li>通过激活函数计算神经元h1、h2的输出o1、o2</li></ol><p>$$<br>Sigmoid函数：S(x)=\frac{1}{1+e^{-x}}<br>$$</p><p>$$<br>ou{t_{h1}} = \frac{1}{ {1 + {e^{ - net_{h1}}}}}<br>$$</p><p>$$<br>ou{t_{h2}} = \frac{1}{ {1 + {e^{ - net_{h2}}}}}<br>$$</p><ol start="3"><li><p>计算输出层o1、o2的输入加权和</p><p>与步骤1同理</p></li><li><p>通过激活函数计算输出层o1、o2的输出</p><p>与步骤2同理</p></li></ol><p><strong>Setp2 反向传播</strong></p><ol><li>计算均方误差，计算公式为</li></ol><p>$$<br>{E_{total}} = \sum {\frac{1}{n}} {(t\arg et - ouput)^2}<br>$$</p><ol start="2"><li><p>隐含层到输出层的权值更新</p><p> 以权值w5为例，通过对误差求w5的偏导确定w5对整体误差产生了多大的影响，并应用链式法则进行化简</p></li></ol><p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p><p>​     其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p><pre><code>对w5的值进行更新</code></pre><p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$<br>​    同理，对w6,w7,w8进行更新</p><ol start="3"><li><p>输入层到隐含层的权值更新</p><p>与步骤2同理</p></li></ol><blockquote><p>参考资料：</p><p>从此蜕变：<a href="https://www.cnblogs.com/codehome/p/9718611.html" target="_blank" rel="noopener">https://www.cnblogs.com/codehome/p/9718611.html</a></p></blockquote>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h4 id=&quot;ls：表示列出当前目录下的文件，ls的命令补充如下：&quot;&gt;&lt;a href=&quot;#ls：表示列出当前目录下的文件，ls的命令补充如下：&quot; class=&quot;headerlink&quot; title=&quot;ls：表示列出当前目录下的文件，ls的命令补充如下：&quot;&gt;&lt;/a&gt;&lt;strong&gt;
+        &lt;p&gt;&lt;img src=&quot;http://i2.tiimg.com/722773/b8cff3de8530c25d.png&quot; alt=&quot;两层神经网络&quot;&gt;&lt;/p&gt;
+&lt;p&gt;以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="https://xdmqp.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="神经网络" scheme="https://xdmqp.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="反向传播" scheme="https://xdmqp.github.io/tags/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令</title>
+    <link href="https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2020-07-12T07:01:49.000Z</published>
+    <updated>2020-07-16T03:28:31.810Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a><strong>ls命令</strong></h4><p>用法：ls [option]，列出当前目录下的文件</p><p>  -l：列出文件详细信息</p><p>  -a :列出目录所有文件，包含以.开始的隐藏文件</p><p>  -t：以时间排序，默认最新修改的文件在上面</p><p> -r：倒序输出</p><p> -x：按列输出，横向排序</p><p> -u：按照文件上次被访问的时间排序</p><p> -S：以文件大小排序</p><p> -h：以易读大小显示</p><p> <strong>组合命令，如-lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</strong></p><h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a><strong>grep</strong></h4><p>用法：grep [option] pattern files，正则表达式搜索文本</p><p>-r：搜索子目录</p><p>-n：显示匹配行和行号</p><p>-l：只列出匹配的文件名</p><p>-i：不区分大小写，默认区分大小写</p><p>-w：只匹配整个单词，而不是字符串的一部分</p><p>grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行</p><p>grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p><h4 id="vim-vi：文件编辑"><a href="#vim-vi：文件编辑" class="headerlink" title="vim/vi：文件编辑"></a><strong>vim/vi：文件编辑</strong></h4><p>vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）， 三种模式的切换方式如下图所示</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="**vim/vi工作模式切换**" title="">                </div>                <div class="image-caption">**vim/vi工作模式切换**</div>            </figure><h5 id="命令模式下常用命令"><a href="#命令模式下常用命令" class="headerlink" title="命令模式下常用命令"></a>命令模式下常用命令</h5><ol><li>i:进入输入模式，从光标当前位置开始输入</li><li>a:进入输入模式，从光标所在位置的下一个位置开始输入</li><li>o：进入输入模式，插入新的一行，从行首开始输入</li><li><strong>0:移动光标到文件开头</strong></li><li><strong>G：移动光标到文件最后</strong></li><li>$：移动光标到所在行行尾</li><li>^：移动光标到所在行行首</li><li>#l：移动光标到当前行的第#个位置</li><li>x:删除光标所在位置后面的一个字符</li><li>X：删除光标所在位置前面的一个字符</li><li><strong>dd：删除光标所在行</strong></li><li>#dd：从光标所在行开始删除#行</li><li><strong>ctrl+g：列出光标所在行行号</strong></li><li><strong>#G：移动到光标只文件的第#行行首</strong></li><li>u：撤销操作</li><li>ctrl+r：恢复操作</li></ol><h5 id="底线命令模式下常用命令"><a href="#底线命令模式下常用命令" class="headerlink" title="底线命令模式下常用命令"></a>底线命令模式下常用命令</h5><ol><li><strong>set nu：显示文件行号</strong></li><li>set nonu：隐藏文件行号</li><li><strong>#：跳到文件中的第#行</strong></li><li><strong>/关键字：查找指定关键字，按n会继续往后查找</strong></li><li>w：保存文件</li><li><strong>q：退出文件编辑</strong></li><li><strong>wq：保存并退出</strong></li><li><strong>q!：放弃一切更改，强制退出</strong></li></ol><h4 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><strong>cd命令</strong></h4><p>用法 cd [option] path</p><p>/path:切换到根目录中的path目录下</p><p>./path：切换到当前目录的path目录下</p><p>../path:切换到上层目录的path目录下</p><p>~：切换到当前用户的自家目录下，如果为root用户，就进去root目录下</p><p>-：切换到进入当前目录的前的目录下</p><h4 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h4><p>打印当前工作目录路径</p><p>-L：打印逻辑工作目录路径</p><p>-P：打印物理工作目录路径</p><h4 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h4><p>用法：mkdir [option] dirname，创建文件夹</p><p>-m：对创建文件夹设置存取权限</p><p>-p：在指定目录下创建文件夹 </p><h4 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h4><p>用法：rm [option] name，删除文件或者目录</p><p>-i ：删除前逐一确认</p><p>-f：直接删除，无需确认</p><p>-r：删除指定目录及以下的所有文件</p><h4 id="rmdir命令"><a href="#rmdir命令" class="headerlink" title="rmdir命令"></a>rmdir命令</h4><p>用法： rm [-p] name，删除空目录</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;ls命令&quot;&gt;&lt;a href=&quot;#ls命令&quot; class=&quot;headerlink&quot; title=&quot;ls命令&quot;&gt;&lt;/a&gt;&lt;strong&gt;ls命令&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;用法：ls [option]，列出当前目录下的文件&lt;/p&gt;
+&lt;p&gt;  -l：列出文件详细信
       
     
     </summary>
@@ -49,7 +79,7 @@
     <link href="https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     <id>https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</id>
     <published>2020-07-08T00:37:18.000Z</published>
-    <updated>2020-07-10T01:02:40.360Z</updated>
+    <updated>2020-07-21T02:49:35.674Z</updated>
     
     <content type="html"><![CDATA[<h1 id="强化学习概念"><a href="#强化学习概念" class="headerlink" title="强化学习概念"></a>强化学习概念</h1><p>强化学习是机器学习中的一类，类似于无监督学习，强化学习是在没有样本的情况下智能体不断与环境进行交互，不断积累经验从而获取最佳策略，在环境中达到自身的目的，这是一种试错性的学习。</p><h1 id="强化学习方法"><a href="#强化学习方法" class="headerlink" title="强化学习方法"></a>强化学习方法</h1><ul><li>根据是否需要理解所处的环境可以将方法分为：<strong>Model-Free RL（Q Learning、Sarsa、Policy Gradients等）和Model-Based RL</strong>。Model-Based RL在Model-Free基础上增加了环境建模，并且能够通过想象来判断接下来的所有情况，选择其中最好的一种情况，并依据这种情况才去下一步策略</li><li>根据选择动作时的参考依据可以将方法分为：<strong>基于概率方法（Policy Gradients等）和基于价值方法（Q Learning、Sarsa等）</strong>。基于概率方法是通过分析所处的环境，直接输出下一步要采用的各种动作的概率，然后根据概率采用某一个动作，即每个动作都可能被选中，只是概率不同。基于价值方法是直接输出所有动作的价值，然后根据最高价值来选择动作。<strong>通过结合两种方法的优势，产生一种新方法：Actor-Critic，actor基于概率做出动作，critic对做出的动作给出动作价值。</strong></li><li>根据更新方式可以将方法分为：<strong>回合更新方法（Mote-carlo learning、基础 Policy Gradients等）和单步更新方法（Q Learning、Sarsa和升级Policy Gradients）</strong>。回合更新方法是在执行完一个行为序列后，将梯度收集到一起，再进行更新。单步更新方法是指每一次和环境交互后，立即更新参数。</li><li>根据交互过程中数据的使用方式可以将方法分为：<strong>在线学习方法（Sarsa、Sarsa Lambda）和离线学习方法（Q Learning）</strong>。在线学习方法是指在完成一次交互后，立即用本次交互得到的经验更新行为准则。离线学习方法是先将n次交互的经验存储起来，而后再从存储的经验中更新行为准则。</li></ul>]]></content>
     
@@ -63,7 +93,7 @@
     </summary>
     
     
-      <category term="强化学习" scheme="https://xdmqp.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://xdmqp.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="强化学习" scheme="https://xdmqp.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>

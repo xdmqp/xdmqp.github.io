@@ -21,16 +21,16 @@
     
     
     <meta name="keywords" content="Linux,Linux命令">
-    <meta name="description" content="ls：表示列出当前目录下的文件，ls的命令补充如下：​    -l：列出文件详细信息​    -t：以时间排序，默认最新修改的文件在上面​    -r：倒序输出​    -x：按列输出，横向排序​    -u：按照文件上次被访问的时间排序​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件 grep：正则表达式搜索文本用法：grep [命令补充] pattern fi">
+    <meta name="description" content="ls命令用法：ls [option]，列出当前目录下的文件   -l：列出文件详细信息   -a :列出目录所有文件，包含以.开始的隐藏文件   -t：以时间排序，默认最新修改的文件在上面  -r：倒序输出  -x：按列输出，横向排序  -u：按照文件上次被访问的时间排序  -S：以文件大小排序  -h：以易读大小显示  组合命令，如-lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux常用命令">
 <meta property="og:url" content="https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="技术修炼笔记">
-<meta property="og:description" content="ls：表示列出当前目录下的文件，ls的命令补充如下：​    -l：列出文件详细信息​    -t：以时间排序，默认最新修改的文件在上面​    -r：倒序输出​    -x：按列输出，横向排序​    -u：按照文件上次被访问的时间排序​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件 grep：正则表达式搜索文本用法：grep [命令补充] pattern fi">
+<meta property="og:description" content="ls命令用法：ls [option]，列出当前目录下的文件   -l：列出文件详细信息   -a :列出目录所有文件，包含以.开始的隐藏文件   -t：以时间排序，默认最新修改的文件在上面  -r：倒序输出  -x：按列输出，横向排序  -u：按照文件上次被访问的时间排序  -S：以文件大小排序  -h：以易读大小显示  组合命令，如-lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png">
 <meta property="article:published_time" content="2020-07-12T07:01:49.000Z">
-<meta property="article:modified_time" content="2020-07-14T02:31:14.416Z">
+<meta property="article:modified_time" content="2020-07-16T03:28:31.810Z">
 <meta property="article:author" content="登高必自">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Linux命令">
@@ -170,7 +170,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ls：表示列出当前目录下的文件，ls的命令补充如下："><span class="post-toc-number">1.</span> <span class="post-toc-text">ls：表示列出当前目录下的文件，ls的命令补充如下：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#grep：正则表达式搜索文本"><span class="post-toc-number">2.</span> <span class="post-toc-text">grep：正则表达式搜索文本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-vi：文件编辑"><span class="post-toc-number">3.</span> <span class="post-toc-text">vim&#x2F;vi：文件编辑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#命令模式下常用命令"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">命令模式下常用命令</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#底线命令模式下常用命令"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">底线命令模式下常用命令</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ls命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">ls命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#grep"><span class="post-toc-number">2.</span> <span class="post-toc-text">grep</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-vi：文件编辑"><span class="post-toc-number">3.</span> <span class="post-toc-text">vim&#x2F;vi：文件编辑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#命令模式下常用命令"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">命令模式下常用命令</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#底线命令模式下常用命令"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">底线命令模式下常用命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#cd命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">cd命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pwd命令"><span class="post-toc-number">5.</span> <span class="post-toc-text">pwd命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mkdir命令"><span class="post-toc-number">6.</span> <span class="post-toc-text">mkdir命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rm命令"><span class="post-toc-number">7.</span> <span class="post-toc-text">rm命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rmdir命令"><span class="post-toc-number">8.</span> <span class="post-toc-text">rmdir命令</span></a></li></ol>
         </nav>
     </aside>
 
@@ -196,8 +196,24 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="ls：表示列出当前目录下的文件，ls的命令补充如下："><a href="#ls：表示列出当前目录下的文件，ls的命令补充如下：" class="headerlink" title="ls：表示列出当前目录下的文件，ls的命令补充如下："></a><strong>ls：表示列出当前目录下的文件，ls的命令补充如下：</strong></h4><p>​    -l：列出文件详细信息<br>​    -t：以时间排序，默认最新修改的文件在上面<br>​    -r：倒序输出<br>​    -x：按列输出，横向排序<br>​    -u：按照文件上次被访问的时间排序<br>​    -lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</p>
-<h4 id="grep：正则表达式搜索文本"><a href="#grep：正则表达式搜索文本" class="headerlink" title="grep：正则表达式搜索文本"></a><strong>grep：正则表达式搜索文本</strong></h4><p>用法：grep [命令补充] pattern files<br>    -r：搜索子目录<br>    -n：显示匹配行和行号<br>    -l：只列出匹配的文件名<br>    -i：不区分大小写，默认区分大小写<br>    -w：只匹配整个单词，而不是字符串的一部分<br>    grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行<br>    grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p>
+            <h4 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a><strong>ls命令</strong></h4><p>用法：ls [option]，列出当前目录下的文件</p>
+<p>  -l：列出文件详细信息</p>
+<p>  -a :列出目录所有文件，包含以.开始的隐藏文件</p>
+<p>  -t：以时间排序，默认最新修改的文件在上面</p>
+<p> -r：倒序输出</p>
+<p> -x：按列输出，横向排序</p>
+<p> -u：按照文件上次被访问的时间排序</p>
+<p> -S：以文件大小排序</p>
+<p> -h：以易读大小显示</p>
+<p> <strong>组合命令，如-lrt，代表了”-l -r -t”，按修改时间倒序列出当前目录下的文件</strong></p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a><strong>grep</strong></h4><p>用法：grep [option] pattern files，正则表达式搜索文本</p>
+<p>-r：搜索子目录</p>
+<p>-n：显示匹配行和行号</p>
+<p>-l：只列出匹配的文件名</p>
+<p>-i：不区分大小写，默认区分大小写</p>
+<p>-w：只匹配整个单词，而不是字符串的一部分</p>
+<p>grep pattern1 | pattern2 files ：显示匹配 pattern1 或 pattern2 的行</p>
+<p>grep pattern1 files | grep pattern2 ：显示既匹配 pattern1 又匹配 pattern2 的行</p>
 <h4 id="vim-vi：文件编辑"><a href="#vim-vi：文件编辑" class="headerlink" title="vim/vi：文件编辑"></a><strong>vim/vi：文件编辑</strong></h4><p>vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）， 三种模式的切换方式如下图所示</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -227,6 +243,7 @@
 </ol>
 <h5 id="底线命令模式下常用命令"><a href="#底线命令模式下常用命令" class="headerlink" title="底线命令模式下常用命令"></a>底线命令模式下常用命令</h5><ol>
 <li><strong>set nu：显示文件行号</strong></li>
+<li>set nonu：隐藏文件行号</li>
 <li><strong>#：跳到文件中的第#行</strong></li>
 <li><strong>/关键字：查找指定关键字，按n会继续往后查找</strong></li>
 <li>w：保存文件</li>
@@ -234,6 +251,23 @@
 <li><strong>wq：保存并退出</strong></li>
 <li><strong>q!：放弃一切更改，强制退出</strong></li>
 </ol>
+<h4 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><strong>cd命令</strong></h4><p>用法 cd [option] path</p>
+<p>/path:切换到根目录中的path目录下</p>
+<p>./path：切换到当前目录的path目录下</p>
+<p>../path:切换到上层目录的path目录下</p>
+<p>~：切换到当前用户的自家目录下，如果为root用户，就进去root目录下</p>
+<p>-：切换到进入当前目录的前的目录下</p>
+<h4 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h4><p>打印当前工作目录路径</p>
+<p>-L：打印逻辑工作目录路径</p>
+<p>-P：打印物理工作目录路径</p>
+<h4 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h4><p>用法：mkdir [option] dirname，创建文件夹</p>
+<p>-m：对创建文件夹设置存取权限</p>
+<p>-p：在指定目录下创建文件夹 </p>
+<h4 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h4><p>用法：rm [option] name，删除文件或者目录</p>
+<p>-i ：删除前逐一确认</p>
+<p>-f：直接删除，无需确认</p>
+<p>-r：删除指定目录及以下的所有文件</p>
+<h4 id="rmdir命令"><a href="#rmdir命令" class="headerlink" title="rmdir命令"></a>rmdir命令</h4><p>用法： rm [-p] name，删除空目录</p>
 
         </div>
 
@@ -242,7 +276,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-14T02:31:14.416Z" itemprop="dateUpdated">2020-07-14 10:31:14</time>
+    最后更新时间：<time datetime="2020-07-16T03:28:31.810Z" itemprop="dateUpdated">2020-07-16 11:28:31</time>
 </span><br>
 
 
@@ -319,7 +353,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">神经网络反向传播过程</h4>
+      </a>
+    </div>
   
 
   
