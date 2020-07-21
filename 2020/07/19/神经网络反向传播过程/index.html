@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://i2.tiimg.com/722773/b8cff3de8530c25d.png">
 <meta property="article:published_time" content="2020-07-19T02:08:25.000Z">
-<meta property="article:modified_time" content="2020-07-21T03:30:37.478Z">
+<meta property="article:modified_time" content="2020-07-21T13:21:58.650Z">
 <meta property="article:author" content="登高必自">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="反向传播">
@@ -102,13 +102,6 @@
               <a href="https://github.com/xdmqp" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
               </a>
             </li>
         
@@ -223,7 +216,7 @@
 </li>
 </ol>
 <p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p>
-<p>​     其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
+<p>​    其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p>
 <pre><code>对w5的值进行更新</code></pre><p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$<br>​    同理，对w6,w7,w8进行更新</p>
@@ -244,7 +237,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-21T03:30:37.478Z" itemprop="dateUpdated">2020-07-21 11:30:37</time>
+    最后更新时间：<time datetime="2020-07-21T13:21:58.650Z" itemprop="dateUpdated">2020-07-21 21:21:58</time>
 </span><br>
 
 
@@ -324,9 +317,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2020/07/21/Hexo%E4%B8%AD%E5%85%B3%E4%BA%8EMarkdown%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98/" id="post-prev" class="post-nav-link">
+      <a href="/2020/07/21/Hexo%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Hexo中关于Markdown渲染的问题</h4>
+        <h4 class="title">Hexo使用问题汇总</h4>
       </a>
     </div>
   

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdmqp.github.io/"/>
-  <updated>2020-07-21T03:32:49.499Z</updated>
+  <updated>2020-07-21T13:31:47.738Z</updated>
   <id>https://xdmqp.github.io/</id>
   
   <author>
@@ -17,17 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hexo中关于Markdown渲染的问题</title>
-    <link href="https://xdmqp.github.io/2020/07/21/Hexo%E4%B8%AD%E5%85%B3%E4%BA%8EMarkdown%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>https://xdmqp.github.io/2020/07/21/Hexo%E4%B8%AD%E5%85%B3%E4%BA%8EMarkdown%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <title>Hexo使用问题汇总</title>
+    <link href="https://xdmqp.github.io/2020/07/21/Hexo%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
+    <id>https://xdmqp.github.io/2020/07/21/Hexo%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</id>
     <published>2020-07-21T03:32:49.000Z</published>
-    <updated>2020-07-21T03:32:49.499Z</updated>
+    <updated>2020-07-21T13:31:47.738Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="数学公式渲染问题"><a href="#数学公式渲染问题" class="headerlink" title="数学公式渲染问题"></a>数学公式渲染问题</h4><p>问题描述：当md文件中包含一些比较复杂的数学公式时，在使用Typora编辑时可以正常显示数学公式，但是使用hexo g命令将md文件解析成html文件时，会报如下错误：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://i2.tiimg.com/722773/75bd0750d96ff173.png" alt="Error截图" title="">                </div>                <div class="image-caption">Error截图</div>            </figure><p>原因：当Latex公式中出现连续两个及以上左大括号”{“时，就会报上述错误</p><p>解决方法：每当出现连续两个及以上左大括号”{“时，使用空格将其隔开，就能正常解析了</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;数学公式渲染问题&quot;&gt;&lt;a href=&quot;#数学公式渲染问题&quot; class=&quot;headerlink&quot; title=&quot;数学公式渲染问题&quot;&gt;&lt;/a&gt;数学公式渲染问题&lt;/h4&gt;&lt;p&gt;问题描述：当md文件中包含一些比较复杂的数学公式时，在使用Typora编辑时可以正常显示数学
+      
     
     </summary>
     
     
+    
+      <category term="Markdown渲染" scheme="https://xdmqp.github.io/tags/Markdown%E6%B8%B2%E6%9F%93/"/>
     
   </entry>
   
@@ -36,9 +45,9 @@
     <link href="https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/"/>
     <id>https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/</id>
     <published>2020-07-19T02:08:25.000Z</published>
-    <updated>2020-07-21T03:30:37.478Z</updated>
+    <updated>2020-07-21T13:21:58.650Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络"></p><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p><p><strong>上述神经网络中的训练过程如下：</strong></p><p><strong>Step1 前向传播</strong></p><ol><li>计算神经元h1、h2的输入加权和</li></ol><p>$$<br>ne{t_{h1}} = w1\times i1 + w2\times i2 + b1<br>$$</p><p>$$<br>ne{t_{h2}} = w3 \times i1 + w4 \times i2 + b1<br>$$</p><ol start="2"><li>通过激活函数计算神经元h1、h2的输出o1、o2</li></ol><p>$$<br>Sigmoid函数：S(x)=\frac{1}{1+e^{-x}}<br>$$</p><p>$$<br>ou{t_{h1}} = \frac{1}{ {1 + {e^{ - net_{h1}}}}}<br>$$</p><p>$$<br>ou{t_{h2}} = \frac{1}{ {1 + {e^{ - net_{h2}}}}}<br>$$</p><ol start="3"><li><p>计算输出层o1、o2的输入加权和</p><p>与步骤1同理</p></li><li><p>通过激活函数计算输出层o1、o2的输出</p><p>与步骤2同理</p></li></ol><p><strong>Setp2 反向传播</strong></p><ol><li>计算均方误差，计算公式为</li></ol><p>$$<br>{E_{total}} = \sum {\frac{1}{n}} {(t\arg et - ouput)^2}<br>$$</p><ol start="2"><li><p>隐含层到输出层的权值更新</p><p> 以权值w5为例，通过对误差求w5的偏导确定w5对整体误差产生了多大的影响，并应用链式法则进行化简</p></li></ol><p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p><p>​     其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p><pre><code>对w5的值进行更新</code></pre><p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$<br>​    同理，对w6,w7,w8进行更新</p><ol start="3"><li><p>输入层到隐含层的权值更新</p><p>与步骤2同理</p></li></ol><blockquote><p>参考资料：</p><p>从此蜕变：<a href="https://www.cnblogs.com/codehome/p/9718611.html" target="_blank" rel="noopener">https://www.cnblogs.com/codehome/p/9718611.html</a></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p><img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络"></p><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p><p><strong>上述神经网络中的训练过程如下：</strong></p><p><strong>Step1 前向传播</strong></p><ol><li>计算神经元h1、h2的输入加权和</li></ol><p>$$<br>ne{t_{h1}} = w1\times i1 + w2\times i2 + b1<br>$$</p><p>$$<br>ne{t_{h2}} = w3 \times i1 + w4 \times i2 + b1<br>$$</p><ol start="2"><li>通过激活函数计算神经元h1、h2的输出o1、o2</li></ol><p>$$<br>Sigmoid函数：S(x)=\frac{1}{1+e^{-x}}<br>$$</p><p>$$<br>ou{t_{h1}} = \frac{1}{ {1 + {e^{ - net_{h1}}}}}<br>$$</p><p>$$<br>ou{t_{h2}} = \frac{1}{ {1 + {e^{ - net_{h2}}}}}<br>$$</p><ol start="3"><li><p>计算输出层o1、o2的输入加权和</p><p>与步骤1同理</p></li><li><p>通过激活函数计算输出层o1、o2的输出</p><p>与步骤2同理</p></li></ol><p><strong>Setp2 反向传播</strong></p><ol><li>计算均方误差，计算公式为</li></ol><p>$$<br>{E_{total}} = \sum {\frac{1}{n}} {(t\arg et - ouput)^2}<br>$$</p><ol start="2"><li><p>隐含层到输出层的权值更新</p><p> 以权值w5为例，通过对误差求w5的偏导确定w5对整体误差产生了多大的影响，并应用链式法则进行化简</p></li></ol><p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p><p>​    其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p><p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p><pre><code>对w5的值进行更新</code></pre><p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$<br>​    同理，对w6,w7,w8进行更新</p><ol start="3"><li><p>输入层到隐含层的权值更新</p><p>与步骤2同理</p></li></ol><blockquote><p>参考资料：</p><p>从此蜕变：<a href="https://www.cnblogs.com/codehome/p/9718611.html" target="_blank" rel="noopener">https://www.cnblogs.com/codehome/p/9718611.html</a></p></blockquote>]]></content>
     
     <summary type="html">
     
