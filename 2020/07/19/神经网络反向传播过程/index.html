@@ -21,16 +21,16 @@
     
     
     <meta name="keywords" content="神经网络,反向传播">
-    <meta name="description" content="以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。 上述神经网络中的训练过程如下： Step1 前向传播  计算神经元h1、h2的输入加权和  $$ne{t_{h1}} &#x3D; w1\times i1 + w2\times i2 + b1$$ $$ne{t_{">
+    <meta name="description" content="以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。 上述神经网络中的训练过程如下： Step1 前向传播  计算神经元h1、h2的输入加权和  $$ne{t_{h1}} &#x3D; w1\times i1 + w2\times i2 + b1$$ $$ne{t_{h2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络反向传播过程">
 <meta property="og:url" content="https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="技术修炼笔记">
-<meta property="og:description" content="以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。 上述神经网络中的训练过程如下： Step1 前向传播  计算神经元h1、h2的输入加权和  $$ne{t_{h1}} &#x3D; w1\times i1 + w2\times i2 + b1$$ $$ne{t_{">
+<meta property="og:description" content="以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。 上述神经网络中的训练过程如下： Step1 前向传播  计算神经元h1、h2的输入加权和  $$ne{t_{h1}} &#x3D; w1\times i1 + w2\times i2 + b1$$ $$ne{t_{h2">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://i2.tiimg.com/722773/b8cff3de8530c25d.png">
 <meta property="article:published_time" content="2020-07-19T02:08:25.000Z">
-<meta property="article:modified_time" content="2020-07-22T07:36:47.882Z">
+<meta property="article:modified_time" content="2020-07-23T07:28:18.067Z">
 <meta property="article:author" content="登高必自">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="反向传播">
@@ -160,6 +160,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#"><span class="post-toc-number">1.</span> <span class="post-toc-text"></span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-神经网络反向传播过程"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -182,9 +189,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络" style="zoom: 67%;" />
-
-<p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p>
+            <h3 id=""><a href="#" class="headerlink" title=""></a><img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络" style="zoom: 67%;" /></h3><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p>
 <p><strong>上述神经网络中的训练过程如下：</strong></p>
 <p><strong>Step1 前向传播</strong></p>
 <ol>
@@ -213,14 +218,16 @@
 <p>$$<br>{E_{total}} = \sum {\frac{1}{n}} {(t\arg et - ouput)^2}<br>$$</p>
 <ol start="2">
 <li><p>隐含层到输出层的权值更新</p>
-<p> 以权值w5为例，通过对误差求w5的偏导确定w5对整体误差产生了多大的影响，并应用链式法则进行化简</p>
+<p>以权值w5为例，通过对误差求w5的偏导确定w5对整体误差产生了多大的影响，并应用链式法则进行化简</p>
 </li>
 </ol>
 <p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p>
-<p>​    其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
+<p>​   其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p>
-<pre><code>对w5的值进行更新</code></pre><p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$<br>​    同理，对w6,w7,w8进行更新</p>
+<p>   对w5的值进行更新</p>
+<p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$</p>
+<p>​   同理，对w6,w7,w8进行更新</p>
 <ol start="3">
 <li><p>输入层到隐含层的权值更新</p>
 <p>与步骤2同理</p>
@@ -238,7 +245,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-22T07:36:47.882Z" itemprop="dateUpdated">2020-07-22 15:36:47</time>
+    最后更新时间：<time datetime="2020-07-23T07:28:18.067Z" itemprop="dateUpdated">2020-07-23 15:28:18</time>
 </span><br>
 
 
