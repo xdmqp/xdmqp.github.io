@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Markdown渲染">
+    <meta name="keywords" content="Hexo渲染公式,行内公式">
     <meta name="description" content="数学公式渲染问题问题描述：当md文件中包含一些比较复杂的数学公式时，在使用Typora编辑时可以正常显示数学公式，但是使用hexo g命令将md文件解析成html文件时，会报如下错误：                                                                                              Error截图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo使用问题汇总">
@@ -30,9 +30,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://i2.tiimg.com/722773/75bd0750d96ff173.png">
 <meta property="article:published_time" content="2020-07-21T03:32:49.000Z">
-<meta property="article:modified_time" content="2020-07-21T13:31:47.738Z">
+<meta property="article:modified_time" content="2020-07-23T08:43:15.208Z">
 <meta property="article:author" content="登高必自">
-<meta property="article:tag" content="Markdown渲染">
+<meta property="article:tag" content="Hexo渲染公式">
+<meta property="article:tag" content="行内公式">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://i2.tiimg.com/722773/75bd0750d96ff173.png">
     
@@ -160,7 +161,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数学公式渲染问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">数学公式渲染问题</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数学公式渲染问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">数学公式渲染问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#行内公式"><span class="post-toc-number">2.</span> <span class="post-toc-text">行内公式</span></a></li></ol>
         </nav>
     </aside>
 
@@ -195,6 +196,11 @@
 
 <p>原因：当Latex公式中出现连续两个及以上左大括号”{“时，就会报上述错误</p>
 <p>解决方法：每当出现连续两个及以上左大括号”{“时，使用空格将其隔开，就能正常解析了</p>
+<h4 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h4><p>问题描述：Typora编辑器给出的格式只有公式块，不能定义行内公式</p>
+<p>解决方式：在需要输入行内公式的地方前后各用一个$包围起来</p>
+<p>如$s_t$就可以像下面这样输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$s_t$</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -203,7 +209,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-21T13:31:47.738Z" itemprop="dateUpdated">2020-07-21 21:31:47</time>
+    最后更新时间：<time datetime="2020-07-23T08:43:15.208Z" itemprop="dateUpdated">2020-07-23 16:43:15</time>
 </span><br>
 
 
@@ -225,7 +231,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown%E6%B8%B2%E6%9F%93/" rel="tag">Markdown渲染</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo%E6%B8%B2%E6%9F%93%E5%85%AC%E5%BC%8F/" rel="tag">Hexo渲染公式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F/" rel="tag">行内公式</a></li></ul>
 
 
             
@@ -280,7 +286,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/07/23/DQN/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DQN</h4>
+      </a>
+    </div>
   
 
   
