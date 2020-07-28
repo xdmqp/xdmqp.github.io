@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdmqp.github.io/"/>
-  <updated>2020-07-28T08:47:32.722Z</updated>
+  <updated>2020-07-28T08:48:05.309Z</updated>
   <id>https://xdmqp.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>马尔科夫决策过程</title>
+    <title>强化学习(二) 马尔科夫决策过程</title>
     <link href="https://xdmqp.github.io/2020/07/23/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A02.%20%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/"/>
     <id>https://xdmqp.github.io/2020/07/23/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A02.%20%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</id>
     <published>2020-07-23T07:48:38.000Z</published>
-    <updated>2020-07-28T08:47:32.722Z</updated>
+    <updated>2020-07-28T08:48:05.309Z</updated>
     
     <content type="html"><![CDATA[<p><strong>马尔科夫决策过程（MDP）5要素：</strong></p><p>state  $s_t$: 环境t时刻的状态</p><p>action $a_t$: Agent t时刻的动作</p><p>state transition probability matrix P: 环境状态转移矩阵P($s_t+1$|$s_t$,$a_t$)</p><p>reward $r_t$: 环境t时刻给予Agent的奖励</p><p>discount factor γ: 衰减系数（取值范围为(0，1]）</p>]]></content>
     
