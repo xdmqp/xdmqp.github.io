@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xdmqp.github.io/2020/11/17/Linux%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/</loc>
+    
+    <lastmod>2021-07-06T08:37:57.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/07/06/Zookeeper%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T08:37:46.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/11/24/Kafka%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T08:37:26.037Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/11/17/Flume%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T08:37:15.529Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xdmqp.github.io/2021/06/30/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</loc>
     
     <lastmod>2021-07-06T08:32:12.710Z</lastmod>
@@ -51,27 +79,6 @@
   </url>
   
   <url>
-    <loc>https://xdmqp.github.io/2021/11/17/Linux%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/</loc>
-    
-    <lastmod>2021-07-06T08:21:49.113Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xdmqp.github.io/2021/11/24/Kafka%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2021-07-06T08:20:48.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xdmqp.github.io/2021/11/17/Flume%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2021-07-06T08:20:13.283Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xdmqp.github.io/2020/07/23/DQN%E5%85%A5%E9%97%A8/</loc>
     
     <lastmod>2021-07-06T08:14:32.956Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>https://xdmqp.github.io/2020/08/05/Actor-Critic/</loc>
     
     <lastmod>2021-07-06T03:09:18.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2021-07-06T03:06:26.670Z</lastmod>
     
   </url>
   
