@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>策略梯度(Policy Gradient)方法 | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="强化学习,Policy-Based RL,策略梯度">
+    <meta name="description" content="策略梯度(Policy Gradient)方法Value-Based RL的不足 对连续动作的处理能力不足。DQN相关方法只能处理离散动作，无法处理连续动作，虽然也有学者提出了连续控制DQN方法—NAF，但是实现过程比较复杂。 对受限状态下的问题处理能力不足。在使用特征来描述状态空间中的某一个状态时，有可能因为个体观测的限制或者建模的局限，导致真实环境下本来不同的两个状态在建模后拥有的特征描述，很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="策略梯度(Policy Gradient)方法">
+<meta property="og:url" content="https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="策略梯度(Policy Gradient)方法Value-Based RL的不足 对连续动作的处理能力不足。DQN相关方法只能处理离散动作，无法处理连续动作，虽然也有学者提出了连续控制DQN方法—NAF，但是实现过程比较复杂。 对受限状态下的问题处理能力不足。在使用特征来描述状态空间中的某一个状态时，有可能因为个体观测的限制或者建模的局限，导致真实环境下本来不同的两个状态在建模后拥有的特征描述，很">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:22:46.293Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="Policy-Based RL">
+<meta property="article:tag" content="策略梯度">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">策略梯度(Policy Gradient)方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">策略梯度(Policy Gradient)方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-08-03T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2020-08-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#策略梯度-Policy-Gradient-方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">策略梯度(Policy Gradient)方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Value-Based-RL的不足"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Value-Based RL的不足</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Policy-Based-RL的引入"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Policy-Based RL的引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略梯度的优化目标"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">策略梯度的优化目标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略函数设计"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">策略函数设计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#蒙特卡洛策略梯度reinforce算法"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">蒙特卡洛策略梯度reinforce算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">小结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-策略梯度"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">策略梯度(Policy Gradient)方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-08-04 00:00:00" datetime="2020-08-03T16:00:00.000Z"  itemprop="datePublished">2020-08-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="策略梯度-Policy-Gradient-方法"><a href="#策略梯度-Policy-Gradient-方法" class="headerlink" title="策略梯度(Policy Gradient)方法"></a>策略梯度(Policy Gradient)方法</h2><h3 id="Value-Based-RL的不足"><a href="#Value-Based-RL的不足" class="headerlink" title="Value-Based RL的不足"></a>Value-Based RL的不足</h3><ul>
+<li>对连续动作的处理能力不足。DQN相关方法只能处理离散动作，无法处理连续动作，虽然也有学者提出了连续控制DQN方法—<a href="https://arxiv.org/abs/1603.00748" target="_blank" rel="noopener">NAF</a>，但是实现过程比较复杂。</li>
+<li>对受限状态下的问题处理能力不足。在使用特征来描述状态空间中的某一个状态时，有可能因为个体观测的限制或者建模的局限，导致真实环境下本来不同的两个状态在建模后拥有的特征描述，很有可能导致Value-Based RL无法得到最优解，而Policy-Based RL则可以有效解决这个问题</li>
+<li>无法解决随机策略问题。Value-Based RL对应的最优策略通常是确定性策略，即从众多行为价值中选择一个最大价值的行为，而有些问题的最优策略为随机策略，这种情况下就需要使用Policy-Based RL方法</li>
+</ul>
+<h3 id="Policy-Based-RL的引入"><a href="#Policy-Based-RL的引入" class="headerlink" title="Policy-Based RL的引入"></a>Policy-Based RL的引入</h3><p>在Value-Based RL中，采用$\hat{q}$将动作价值函数近似表示为一个包含参数$w$的函数，接受状态和动作的输入，计算得到近似的动作价值，即：<br>$$<br>\hat{q}(s,a,w) \approx q_{\pi}(s,a)<br>$$<br>在Policy-Based RL中，采用类似思路将策略近似表示为一个包含参数$\theta$的函数，即：<br>$$<br>\pi_{\theta}(s,a) = P(a|s,\theta)\approx  \pi(a|s)<br>$$<br>将策略表示为一个连续函数后，就可以用连续函数的优化方法来寻找最优策略了，最常用的方法就是<strong>梯度上升法</strong></p>
+<h3 id="策略梯度的优化目标"><a href="#策略梯度的优化目标" class="headerlink" title="策略梯度的优化目标"></a>策略梯度的优化目标</h3><p>用梯度上升寻找最优梯度，首先要找到一个可以优化的函数目标</p>
+<p>最简单的优化目标就是初始状态收获的期望值，即：<br>$$<br>J_1(\theta) = V_{\pi_{\theta}}(s_1) = \mathbb{E}<em>{\pi</em>{\theta}}(G_1)<br>$$<br>但有的问题是没有明确的初始状态的，那么优化目标就可以定义为平均价值，即：<br>$$<br>J_{avV}(\theta) =\sum\limits_sd_{\pi_{\theta}}(s)V_{\pi_{\theta}}(s)<br>$$<br>其中，$d_{\pi_{\theta}}(s)$是基于策略$\pi_{\theta}$生成的马尔科夫链关于状态的静态分布</p>
+<p>或者定义为每一时间步的平均奖励，即：<br>$$<br>J_{avR}(\theta) = =\sum\limits_sd_{\pi_{\theta}}(s) \sum\limits_a \pi_{\theta}(s,a) R_s^a<br>$$<br>无论是采用$J_1,J_{avV}$还是$J_{avR}$来优化目标，最终对$\theta$求导的梯度都可以表示为：<br>$$<br>\nabla_{\theta} J(\theta) = \mathbb{E}<em>{\pi</em>{\theta}}[\nabla_{\theta}log \pi_{\theta}(s,a) Q_{\pi}(s,a)]<br>$$<br>论文:<a href="https://homes.cs.washington.edu/~todorov/courses/amath579/reading/PolicyGradient.pdf" target="_blank" rel="noopener">https://homes.cs.washington.edu/~todorov/courses/amath579/reading/PolicyGradient.pdf</a></p>
+<p>我们也可以采用其他可能的优化目标来做梯度上升，此时梯度式子里面的$\nabla_{\theta}log \pi_{\theta}(s,a)$并不改变，变化的只是后面的$Q_{\pi}(s,a)]$部分。$\nabla_{\theta}log \pi_{\theta}(s,a)$称为分值函数(score function)</p>
+<p>接下来就是策略函数$\pi_{\theta}(s,a)$的设计了</p>
+<h3 id="策略函数设计"><a href="#策略函数设计" class="headerlink" title="策略函数设计"></a>策略函数设计</h3><p>最常用的策略函数就是<strong>softmax策略函数</strong>，它主要应用于离散空间中，softmax策略使用描述状态和行为的特征$\phi(s,a)$与参数的线性组合来权衡一个行为发生的几率，即：<br>$$<br>\pi_{\theta}(s,a) = \frac{e^{\phi(s,a)^T\theta}}{\sum\limits_be^{\phi(s,b)^T\theta}}<br>$$<br>求导即得对应的分值函数：<br>$$<br>\nabla_{\theta}log \pi_{\theta}(s,a) = \phi(s,a) - \mathbb{E}<em>{\pi</em>{\theta}}[\phi(s,.)]<br>$$<br>另一种策略函数是<strong>高斯策略</strong>，它主要应用于连续行为空间中，该策略对应的行为从高斯分布$\mathbb{N(\phi(s)^T\theta, \sigma^2)}$中产生，高斯策略函数求导即得对应的分值函数：<br>$$<br>\nabla_{\theta}log \pi_{\theta}(s,a) =   \frac{(a-\phi(s)^T\theta)\phi(s)}{\sigma^2}<br>$$<br>有了策略梯度和策略函数，就能得到最简单的策略梯度算法了。</p>
+<h3 id="蒙特卡洛策略梯度reinforce算法"><a href="#蒙特卡洛策略梯度reinforce算法" class="headerlink" title="蒙特卡洛策略梯度reinforce算法"></a>蒙特卡洛策略梯度reinforce算法</h3><p>使用价值函数$v(s)$近似策略梯度中的$Q_{\pi}(s,a)$的流程如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：N个蒙特卡洛完整序列，训练步长</span><br><span class="line">输出：策略函数的参数</span><br><span class="line">1. for 每个蒙特卡洛序列：</span><br><span class="line">	a. 用蒙特卡罗法计算序列每个时间位置t的状态价值vt</span><br><span class="line">	b. 对序列每个时间位置t，使用梯度上升法更新策略函数的参数</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\theta = \theta + \alpha \nabla_{\theta}log \pi_{\theta}(s_t,a_t)  v_t<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 返回策略函数参数，这里的策略函数可以是softmax策略，高斯策略或其他策略</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>策略梯度提供了与DQN之类的Value-Based RL方法不同的新思路，但是仍然有很多不足。由于采用蒙特卡洛法，因此<strong>需要收集到一个完整的行为序列，将梯度收集到一起再进行算法迭代，并且蒙特卡洛法使用收获的期望来计算状态价值，会导致行为有较多变异性，参数更新的方向很可能不是策略梯度的最优方向</strong>。</p>
+<p>因此，Policy-Based RL方法仍需要改进，随之便产生了将Policy-Based和Value-Based结合的方法：Actor-Critic。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-07-06T08:22:46.293Z" itemprop="dateUpdated">2021-07-06 16:22:46</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" target="_blank" rel="external">https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Based-RL/" rel="tag">Policy-Based RL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" rel="tag">策略梯度</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&title=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&title=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/08/05/Actor-Critic/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Actor-Critic</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/23/DQN%E5%85%A5%E9%97%A8/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Q-Learning和Deep Q-Learning(DQN)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&title=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&title=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《策略梯度(Policy Gradient)方法》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

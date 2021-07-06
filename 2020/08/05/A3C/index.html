@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>A3C | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="强化学习,A3C,Policy-Based RL">
+    <meta name="description" content="A3C算法引入A3C的改进方案类似于DQN中的经验池的思想，并且克服了DQN经验池的弊端：经验池内的数据之间相关性太强，用于训练的效果可能不佳，并且实现了异步并发的学习模型。具体就是利用多线程的方法，同时在多个线程里分别和环境进行交互学习，然后把每个线程学习到的经验保存在一个公共空间里，并且定期从公共空间里取出这些线程学习到的经验，指导自身和环境之间的学习交互。 算法优化相比Actor-Criti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A3C">
+<meta property="og:url" content="https://xdmqp.github.io/2020/08/05/A3C/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="A3C算法引入A3C的改进方案类似于DQN中的经验池的思想，并且克服了DQN经验池的弊端：经验池内的数据之间相关性太强，用于训练的效果可能不佳，并且实现了异步并发的学习模型。具体就是利用多线程的方法，同时在多个线程里分别和环境进行交互学习，然后把每个线程学习到的经验保存在一个公共空间里，并且定期从公共空间里取出这些线程学习到的经验，指导自身和环境之间的学习交互。 算法优化相比Actor-Criti">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-06T03:09:27.136Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="A3C">
+<meta property="article:tag" content="Policy-Based RL">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">A3C</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">A3C</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-08-04T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2020-08-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#A3C"><span class="post-toc-number">1.</span> <span class="post-toc-text">A3C</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法引入"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">算法引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法优化"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#异步训练框架"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">异步训练框架</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网络结构优化"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">网络结构优化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Critic评估点优化"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Critic评估点优化</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法流程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">算法流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">小结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-A3C"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">A3C</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-08-05 00:00:00" datetime="2020-08-04T16:00:00.000Z"  itemprop="datePublished">2020-08-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="A3C"><a href="#A3C" class="headerlink" title="A3C"></a>A3C</h2><h3 id="算法引入"><a href="#算法引入" class="headerlink" title="算法引入"></a>算法引入</h3><p>A3C的改进方案类似于DQN中的经验池的思想，并且克服了DQN经验池的弊端：<strong>经验池内的数据之间相关性太强，用于训练的效果可能不佳</strong>，并且实现了异步并发的学习模型。具体就是利用多线程的方法，同时在多个线程里分别和环境进行交互学习，然后把每个线程学习到的经验保存在一个公共空间里，并且定期从公共空间里取出这些线程学习到的经验，指导自身和环境之间的学习交互。</p>
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>相比Actor-Critic，A3C的优化主要有三点：<strong>异步训练框架、网络结构优化和Critic评估点的优化</strong>。</p>
+<h4 id="异步训练框架"><a href="#异步训练框架" class="headerlink" title="异步训练框架"></a>异步训练框架</h4><p>如上图所示，Global Network就相当于公共空间，就是一个公共的神经网络模型，该模型包括Actor网络和Critic网络两部分的功能。公共模型下有n个Worker线程，每个线程里有和公共神经网络一样的网路结构，每个线程都能相互独立地和环境进行交互获得经验数据。</p>
+<p>每个线程与环境交互一定量的数据后，就计算当前线程里神经网络损失函数的梯度，不过计算出来的梯度并<strong>不是用来更新自己线程里的神经网络，而是去更新公共神经网络</strong>。每隔一段时间，线程会将自身的神经网络参数更新为公共神经网络的参数。</p>
+<p>因此，公共神经网络就是我们要学习的模型，线程里的网络模型主要用于和环境交互，拿到高质量的数据来帮助模型更快收敛。</p>
+<h4 id="网络结构优化"><a href="#网络结构优化" class="headerlink" title="网络结构优化"></a>网络结构优化</h4><p>Actor-Critic中<strong>使用了两个不同的网络Actor和Critic，而A3C中又将两个网络放到了一起</strong>，即输入状态$S$，输出状态价值$V$，和策略$\pi$。</p>
+<h4 id="Critic评估点优化"><a href="#Critic评估点优化" class="headerlink" title="Critic评估点优化"></a>Critic评估点优化</h4><p>A3C采用了优势函数$A$作为Critic评估点，优势函数$A$在时刻t不考虑参数的默认表达式为：<br>$$<br>A(S,A,t) = Q(S,A) - V(S)<br>$$<br>其中，$Q(S,A)$通过N步采样近似估计，以加速收敛：<br>$$<br>Q(S,A) = R_t +   \gamma R_{t+1} +…\gamma^{n-1} R_{t+n-1}<br>$$<br>$V(S)$的值则需要通过Critic网络学习得到</p>
+<p>所以，A3C中的优势函数表达为：<br>$$<br>A(S,t) = R_t +  \gamma R_{t+1} +…\gamma^{n-1} R_{t+n-1} + \gamma^n V(S’) - V(S)<br>$$<br>对于Actor和Critic的损失函数部分，加入了策略$\pi$的熵项，系数为c，即策略参数的梯度更新公式变成了：<br>$$<br>\theta = \theta + \alpha \nabla_{\theta}log \pi_{\theta}(s_t,a_t)A(S,t) + c\nabla_{\theta}H(\pi(S_t, \theta))<br>$$</p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>以A3C中任意一个线程的算法流程为例：</p>
+<p>输入：<strong>公共部分的A3C神经网络结构，对应参数$\theta,w$，本线程的神经网络结构，对应参数$\theta ‘, w’$，全局共享的迭代轮数T，全局最大迭代次数$T_max$，线程内单次迭代时间序列最大长度$\T_local$，状态特征维度$n$，动作集合$A$，步长$\alpha,\beta$，熵系数$c$，衰减因子$\gamma$</strong></p>
+<p>输出：<strong>公共部分的A3C神经网络参数$\theta,w$</strong></p>
+<ol>
+<li><p>更新时间序列$t=1$</p>
+</li>
+<li><p>重置Actor和Critic的梯度更新量：$d\theta \gets 0, dw\gets 0$</p>
+</li>
+<li><p>将公共部分的A3C神经网络参数同步到本线程神经网络：$\theta ‘ =\theta,;; w’=w$</p>
+</li>
+<li><p>$t_{start} = t$，初始化状态$s_t$</p>
+</li>
+<li><p>基于策略$\pi(a_t|s_t;\theta)$选择动作$a_t$</p>
+</li>
+<li><p>执行动作$a_t$得到奖励$r_t$和新状态$s_{t+1}$</p>
+</li>
+<li><p>$t \gets t+1, T \gets T+1$</p>
+</li>
+<li><p>如果$s_t$是终止状态或者$t-t_{start} == t_{local}$，进入步骤9，否则进入步骤5</p>
+</li>
+<li><p>计算最后一个时间序列位置$s_t$的$Q(s,t)$：</p>
+</li>
+</ol>
+<p>$$<br>Q(s,t)= \begin{cases} 0&amp; {terminal;state}\ V(s_t,w’)&amp; {none;terminal;state,bootstrapping} \end{cases}<br>$$</p>
+<ol start="10">
+<li><p>$for \quad i \in (t-1,t-2,…t_{start}):$</p>
+<p>       a) 计算每个时刻的$Q(s,i)$：$Q(s,i) = r_i + \gamma Q(s,i+1)$</p>
+<p>       b) 累计Actor的本地梯度更新：<br>$$<br>d\theta \gets d\theta + \nabla_{\theta ‘}log \pi_{\theta’}(s_i,a_i)(Q(s,i)-V(S_i, w’)) + c\nabla_{\theta ‘}H(\pi(s_i, \theta ‘))<br>$$<br>       c) 累计Critic的本地梯度更新：<br>$$<br>dw  \gets dw + \frac{\partial (Q(s,i)-V(S_i, w’))^2}{\partial w’}<br>$$</p>
+</li>
+<li><p>更新全局神经网路的模型参数：</p>
+</li>
+</ol>
+<p>$$<br>\theta = \theta -\alpha d\theta,;w = w -\beta dw<br>$$</p>
+<ol start="12">
+<li>如果$T &gt; T_{max}$，算法结束，输出公共神经网络参数$\theta,w$，否则进入步骤3</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>A3C算法解决了Actor-Critic难以收敛的问题，更重要的一点就是提出了一种通用的异步并发的强化学习框架，其他强化学习算法也同样适用，这是A3C最大的贡献。</p>
+<blockquote>
+<p>强化学习（十五）A3C：<a href="https://www.cnblogs.com/pinard/p/10334127.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/10334127.html</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-07-06T03:09:27.136Z" itemprop="dateUpdated">2021-07-06 11:09:27</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/08/05/A3C/" target="_blank" rel="external">https://xdmqp.github.io/2020/08/05/A3C/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/A3C/" rel="tag">A3C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Based-RL/" rel="tag">Policy-Based RL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/05/A3C/&title=《A3C》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/05/A3C/&title=《A3C》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/05/A3C/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《A3C》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/05/A3C/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/05/A3C/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">强化学习 Deep Deterministic Policy Gradient</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/08/05/Actor-Critic/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Actor-Critic</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/05/A3C/&title=《A3C》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/05/A3C/&title=《A3C》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/05/A3C/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《A3C》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/05/A3C/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/05/A3C/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2020/08/05/A3C/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

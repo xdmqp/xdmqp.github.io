@@ -14,7 +14,7 @@
     
     
     
-    <title>神经网络反向传播过程 | 技术修炼笔记</title>
+    <title>神经网络反向传播过程 | 我的技术笔记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -25,19 +25,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络反向传播过程">
 <meta property="og:url" content="https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/index.html">
-<meta property="og:site_name" content="技术修炼笔记">
+<meta property="og:site_name" content="我的技术笔记">
 <meta property="og:description" content="以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。 上述神经网络中的训练过程如下： Step1 前向传播  计算神经元h1、h2的输入加权和  $$ne{t_{h1}} &#x3D; w1\times i1 + w2\times i2 + b1$$ $$ne{t_{h2">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://i2.tiimg.com/722773/b8cff3de8530c25d.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/853467/201606/853467-20160630141449671-1058672778.png">
 <meta property="article:published_time" content="2020-07-19T02:08:25.000Z">
-<meta property="article:modified_time" content="2020-07-23T07:28:18.067Z">
+<meta property="article:modified_time" content="2021-07-06T08:23:35.161Z">
 <meta property="article:author" content="登高必自">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="反向传播">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://i2.tiimg.com/722773/b8cff3de8530c25d.png">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/853467/201606/853467-20160630141449671-1058672778.png">
     
-        <link rel="alternate" type="application/atom+xml" title="技术修炼笔记" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -189,7 +189,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id=""><a href="#" class="headerlink" title=""></a><img src="http://i2.tiimg.com/722773/b8cff3de8530c25d.png" alt="两层神经网络" style="zoom: 67%;" /></h3><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p>
+            <h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://images2015.cnblogs.com/blog/853467/201606/853467-20160630141449671-1058672778.png" alt="img" style="zoom:50%;" /></h3><p>以图中的神经网络为例，第一层为输入层，包含了两个神经元i1，i2和截距项b1，第二层是隐藏层，包含两个神经元h1,h2和截距项b2；第三层是输出层o1,o2，激活函数采用sigmoid函数。</p>
 <p><strong>上述神经网络中的训练过程如下：</strong></p>
 <p><strong>Step1 前向传播</strong></p>
 <ol>
@@ -222,12 +222,12 @@
 </li>
 </ol>
 <p>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial w5}} = \frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}}\times\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}}\times\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}}<br>$$</p>
-<p>​   其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
+<p>   其中，<br>$$<br>\frac{ {\partial {E_{total}}}}{ {\partial ou{t_{o1}}}} = \frac{ {\partial (\frac{1}{2}\times[{ {(t\arg e{t_{o1}} - ou{t_{o1}})}^2} + { {(t\arg e{t_{o2}} - ou{t_{o2}})}^2}])}}{ {\partial ou{t_{o1}}}} =  - (t\arg e{t_{o1}} - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ou{t_{o1}}}}{ {\partial ne{t_{o1}}}} = \frac{ {\partial \frac{1}{ {1 + {e^{ - ne{t_{o1}}}}}}}}{ {\partial ne{t_{o1}}}} = ou{t_{o1}}\times(1 - ou{t_{o1}})<br>$$</p>
 <p>$$<br>\frac{ {\partial ne{t_{o1}}}}{ {\partial w5}} = \frac{ {\partial (w5 \times ou{t_{h1}} + w6 \times ou{t_{h2}} + {b_2})}}{ {\partial w5}} = ou{t_{h1}}<br>$$</p>
 <p>   对w5的值进行更新</p>
 <p>$$<br>w{5^+} = w5 - \eta \times \frac{ {\partial {E_{total}}}}{ {\partial w5}}<br>$$</p>
-<p>​   同理，对w6,w7,w8进行更新</p>
+<p>   同理，对w6,w7,w8进行更新</p>
 <ol start="3">
 <li><p>输入层到隐含层的权值更新</p>
 <p>与步骤2同理</p>
@@ -245,7 +245,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-23T07:28:18.067Z" itemprop="dateUpdated">2020-07-23 15:28:18</time>
+    最后更新时间：<time datetime="2021-07-06T08:23:35.161Z" itemprop="dateUpdated">2021-07-06 16:23:35</time>
 </span><br>
 
 
@@ -277,7 +277,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 技术修炼笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -287,7 +287,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 技术修炼笔记&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 我的技术笔记&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -297,7 +297,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《神经网络反向传播过程》 — 技术修炼笔记&url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&via=https://xdmqp.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《神经网络反向传播过程》 — 我的技术笔记&url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&via=https://xdmqp.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -334,9 +334,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="post-next" class="post-nav-link">
+      <a href="/2020/07/15/%E7%89%B9%E5%BE%81%E5%BD%92%E4%B8%80%E5%8C%96%E6%96%B9%E6%B3%95/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Linux常用命令</h4>
+        <h4 class="title">特征归一化方法</h4>
       </a>
     </div>
   
@@ -392,7 +392,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>登高必自 &copy; 2019 - 2020</span>
+        <p><span>登高必自 &copy; 2019 - 2021</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -410,7 +410,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 技术修炼笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -420,7 +420,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 技术修炼笔记&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&title=《神经网络反向传播过程》 — 我的技术笔记&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -430,7 +430,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《神经网络反向传播过程》 — 技术修炼笔记&url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&via=https://xdmqp.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《神经网络反向传播过程》 — 我的技术笔记&url=https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/&via=https://xdmqp.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Zookeeper基础 | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="大数据,ZooKeeper">
+    <meta name="description" content="ZooKeeper基础入门概述Zookeeper是一个开源的分布式的，为分布式应用提供协调服务的Apache项目。                                                                                              image-20201116160146424               特点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper基础">
+<meta property="og:url" content="https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="ZooKeeper基础入门概述Zookeeper是一个开源的分布式的，为分布式应用提供协调服务的Apache项目。                                                                                              image-20201116160146424               特点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116160146424.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116160219812.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116160256917.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116154538893.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116155012746.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116155707823.png">
+<meta property="og:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116160005237.png">
+<meta property="article:published_time" content="2021-07-06T03:02:38.000Z">
+<meta property="article:modified_time" content="2021-07-06T03:06:26.670Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="大数据">
+<meta property="article:tag" content="ZooKeeper">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/wenqr/AppData/Roaming/Typora/typora-user-images/image-20201116160146424.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Zookeeper基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Zookeeper基础</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-07-06T03:02:38.000Z" itemprop="datePublished" class="page-time">
+  2021-07-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ZooKeeper基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">ZooKeeper基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入门"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据结构"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">数据结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用场景"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">应用场景</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ZooKeeper内部原理"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">ZooKeeper内部原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选举机制"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">选举机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#节点类型"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">节点类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stat结构体"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Stat结构体</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#监听器原理"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">监听器原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写数据流程"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">写数据流程</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Zookeeper基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Zookeeper基础</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-07-06 11:02:38" datetime="2021-07-06T03:02:38.000Z"  itemprop="datePublished">2021-07-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ZooKeeper基础"><a href="#ZooKeeper基础" class="headerlink" title="ZooKeeper基础"></a>ZooKeeper基础</h1><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Zookeeper是一个开源的分布式的，为分布式应用提供协调服务的Apache项目。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116160146424.png" alt="image-20201116160146424" title="">
+                </div>
+                <div class="image-caption">image-20201116160146424</div>
+            </figure>
+
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116160219812.png" alt="image-20201116160219812" title="">
+                </div>
+                <div class="image-caption">image-20201116160219812</div>
+            </figure>
+
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p><strong><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116160256917.png" alt="image-20201116160256917" title="">
+                </div>
+                <div class="image-caption">image-20201116160256917</div>
+            </figure></strong></p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>统一命名服务：对应用/服务进行统一命名，便于识别<br>统一配置管理：将配置信息写入一个Znode，各个客户端注册监听这个Znode，一旦Znode数据被修改，ZooKeeper将通知各个客户端服务器<br>统一集群管理：将节点信息写入一个Znode，通过监听Znode获取节点的实时状态变化<br>服务器动态上下线：服务端启动时向ZooKeeper注册信息，客户端向ZooKeeper获取当前在线服务器列表并且注册监听。当服务器上下线时，ZooKeeper向<br>客户端发送事件通知，客户端在重新获取服务器列表并注册监听。<br>软负载均衡：通过在Zookeeper中记录每台服务器的访问次数，每次让访问次数最少的服务器去处理最新的客户端请求。</p>
+<h2 id="ZooKeeper内部原理"><a href="#ZooKeeper内部原理" class="headerlink" title="ZooKeeper内部原理"></a>ZooKeeper内部原理</h2><h3 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h3><p><strong>半数机制：集群中半数以上机器存活，集群可用。因此ZooKeeper适合安装奇数台服务器</strong><br>Zookeeper虽然在配置文件中并没有指定Master和Slave。但是，Zookeeper工作时，是有一个节点为Leader，其他则为Follower，Leader是通过内部的选举机制临时产生的。<br>假设有五台服务器组成的Zookeeper集群，它们的id从1-5，同时它们都是最新启动的，也就是没有历史数据，在存放数据量这一点上，都是一样的。假设这些服务器依序启动：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116154538893.png" alt="image-20201116154538893" title="">
+                </div>
+                <div class="image-caption">image-20201116154538893</div>
+            </figure>
+
+<ol>
+<li>服务器1启动，此时只有它一台服务器启动了，它发出去的报文没有任何响应，所以它的选举状态一直是LOOKING状态。</li>
+<li>服务器2启动，它与最开始启动的服务器1进行通信，互相交换自己的选举结果，由于两者都没有历史数据，所以id值较大的服务器2胜出，但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3)，所以服务器1、2还是继续保持LOOKING状态。</li>
+<li>服务器3启动，根据前面的理论分析，服务器3成为服务器1、2、3中的老大，而与上面不同的是，此时有三台服务器选举了它，所以它成为了这次选举的Leader。</li>
+<li>服务器4启动，根据前面的分析，理论上服务器4应该是服务器1、2、3、4中最大的，但是由于前面已经有半数以上的服务器选举了服务器3，所以它只能接收当小弟的命了。</li>
+<li>服务器5启动，同4一样当小弟。</li>
+</ol>
+<h3 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116155012746.png" alt="image-20201116155012746" title="">
+                </div>
+                <div class="image-caption">image-20201116155012746</div>
+            </figure>
+
+<h3 id="Stat结构体"><a href="#Stat结构体" class="headerlink" title="Stat结构体"></a>Stat结构体</h3><ol>
+<li><p>czxid-创建节点的事务zxid</p>
+<p>每次修改ZooKeeper状态都会收到一个zxid形式的时间戳，也就是ZooKeeper事务ID。</p>
+<p>事务ID是ZooKeeper中所有修改总的次序。每个修改都有唯一的zxid，如果zxid1小于zxid2，那么zxid1在zxid2之前发生。</p>
+</li>
+<li><p>ctime - znode被创建的毫秒数(从1970年开始)</p>
+</li>
+<li><p>mzxid - znode最后更新的事务zxid</p>
+</li>
+<li><p>mtime - znode最后修改的毫秒数(从1970年开始)</p>
+</li>
+<li><p>pZxid-znode最后更新的子节点zxid</p>
+</li>
+<li><p>cversion - znode子节点变化号，znode子节点修改次数</p>
+</li>
+<li><p>dataversion - znode数据变化号</p>
+</li>
+<li><p>aclVersion - znode访问控制列表的变化号</p>
+</li>
+<li><p>ephemeralOwner- 如果是临时节点，这个是znode拥有者的session id。如果不是临时节点则是0。</p>
+</li>
+<li><p><strong>dataLength- znode的数据长度</strong></p>
+</li>
+<li><p><strong>numChildren - znode子节点数量</strong></p>
+</li>
+</ol>
+<h3 id="监听器原理"><a href="#监听器原理" class="headerlink" title="监听器原理"></a>监听器原理</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116155707823.png" alt="image-20201116155707823" title="">
+                </div>
+                <div class="image-caption">image-20201116155707823</div>
+            </figure>
+
+<h3 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="C:\Users\wenqr\AppData\Roaming\Typora\typora-user-images\image-20201116160005237.png" alt="image-20201116160005237" title="">
+                </div>
+                <div class="image-caption">image-20201116160005237</div>
+            </figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-07-06T03:06:26.670Z" itemprop="dateUpdated">2021-07-06 11:06:26</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" target="_blank" rel="external">https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZooKeeper/" rel="tag">ZooKeeper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag">大数据</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&title=《Zookeeper基础》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&title=《Zookeeper基础》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Zookeeper基础》 — 我的技术笔记&url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2021/11/17/Linux%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux文件或目录权限</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/06/30/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java内存泄漏与内存溢出</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&title=《Zookeeper基础》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&title=《Zookeeper基础》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Zookeeper基础》 — 我的技术笔记&url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

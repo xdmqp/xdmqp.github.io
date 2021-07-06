@@ -2,44 +2,128 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xdmqp.github.io/2020/07/23/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A02.%20%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</loc>
+    <loc>https://xdmqp.github.io/2021/06/30/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</loc>
     
-    <lastmod>2020-07-28T08:48:05.309Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A01.%20%E6%A6%82%E5%BF%B5%E5%92%8C%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2020-07-28T08:36:42.687Z</lastmod>
+    <lastmod>2021-07-06T08:32:12.710Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://xdmqp.github.io/2020/07/07/Markdown/</loc>
+    <loc>https://xdmqp.github.io/2020/08/10/%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
     
-    <lastmod>2020-07-28T07:28:38.584Z</lastmod>
+    <lastmod>2021-07-06T08:29:21.177Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xdmqp.github.io/2020/07/21/Hexo%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</loc>
     
-    <lastmod>2020-07-23T08:43:15.208Z</lastmod>
+    <lastmod>2021-07-06T08:26:07.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/07/15/%E7%89%B9%E5%BE%81%E5%BD%92%E4%B8%80%E5%8C%96%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2021-07-06T08:23:42.441Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xdmqp.github.io/2020/07/19/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%BF%87%E7%A8%8B/</loc>
     
-    <lastmod>2020-07-23T07:28:18.067Z</lastmod>
+    <lastmod>2021-07-06T08:23:35.161Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/08/04/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/</loc>
+    
+    <lastmod>2021-07-06T08:22:46.293Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/07/07/Markdown/</loc>
+    
+    <lastmod>2021-07-06T08:21:57.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2021/11/17/Linux%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/</loc>
+    
+    <lastmod>2021-07-06T08:21:49.113Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2021/11/24/Kafka%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T08:20:48.746Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2021/11/17/Flume%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T08:20:13.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/07/23/DQN%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2021-07-06T08:14:32.956Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/</loc>
+    
+    <lastmod>2021-07-06T06:47:57.473Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/07/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2021-07-06T03:19:33.627Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/08/05/A3C/</loc>
+    
+    <lastmod>2021-07-06T03:09:27.136Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/08/05/Actor-Critic/</loc>
+    
+    <lastmod>2021-07-06T03:09:18.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2021/07/06/Zookeeper%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2021-07-06T03:06:26.670Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xdmqp.github.io/2020/07/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     
-    <lastmod>2020-07-16T03:28:31.810Z</lastmod>
+    <lastmod>2021-07-06T02:52:35.714Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xdmqp.github.io/2020/08/18/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%AD%E7%9A%84%E7%86%B5/</loc>
+    
+    <lastmod>2020-08-18T10:19:43.334Z</lastmod>
     
   </url>
   

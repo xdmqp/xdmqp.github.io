@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>强化学习 Deep Deterministic Policy Gradient | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="强化学习,Policy-Based RL,Deep Deterministic Policy Gradient">
+    <meta name="description" content="Deep Deterministic Policy Gradient随机策略和确定性策略先来说一下Deterministic Policy Gradient，也就是确定性策略。顾名思义，确定性策略是相对于随机性策略而言的。对于某一些动作集合来说，它可能是连续值，或者非常高维的离散值，这样的动作空间维度极大。如果采用随机策略研究所有可能动作的概率并计算各个动作的价值，需要采样的数据量较大，学习也会比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强化学习 Deep Deterministic Policy Gradient">
+<meta property="og:url" content="https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="Deep Deterministic Policy Gradient随机策略和确定性策略先来说一下Deterministic Policy Gradient，也就是确定性策略。顾名思义，确定性策略是相对于随机性策略而言的。对于某一些动作集合来说，它可能是连续值，或者非常高维的离散值，这样的动作空间维度极大。如果采用随机策略研究所有可能动作的概率并计算各个动作的价值，需要采样的数据量较大，学习也会比">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-06T06:47:57.473Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="Policy-Based RL">
+<meta property="article:tag" content="Deep Deterministic Policy Gradient">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">强化学习 Deep Deterministic Policy Gradient</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">强化学习 Deep Deterministic Policy Gradient</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-08-05T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2020-08-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Deep-Deterministic-Policy-Gradient"><span class="post-toc-number">1.</span> <span class="post-toc-text">Deep Deterministic Policy Gradient</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#随机策略和确定性策略"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">随机策略和确定性策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DPG到DDPG"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">DPG到DDPG</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DDPG原理"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">DDPG原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法流程"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">算法流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">小结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Deep Deterministic Policy Gradient"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">强化学习 Deep Deterministic Policy Gradient</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-08-06 00:00:00" datetime="2020-08-05T16:00:00.000Z"  itemprop="datePublished">2020-08-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Deep-Deterministic-Policy-Gradient"><a href="#Deep-Deterministic-Policy-Gradient" class="headerlink" title="Deep Deterministic Policy Gradient"></a>Deep Deterministic Policy Gradient</h2><h3 id="随机策略和确定性策略"><a href="#随机策略和确定性策略" class="headerlink" title="随机策略和确定性策略"></a>随机策略和确定性策略</h3><p>先来说一下Deterministic Policy Gradient，也就是确定性策略。顾名思义，确定性策略是相对于随机性策略而言的。对于某一些动作集合来说，它可能是连续值，或者非常高维的离散值，这样的动作空间维度极大。如果采用随机策略研究所有可能动作的概率并计算各个动作的价值，需要采样的数据量较大，学习也会比较慢，这时候确定性策略就是更好的方式啦。</p>
+<p>对于随机策略，在相同的状态下输出的动作是不唯一的，而是满足一定的概率分布；对于确定性策略，在相同状态下利用确定性梯度优化策略，其输出的动作是确定的。</p>
+<h3 id="DPG到DDPG"><a href="#DPG到DDPG" class="headerlink" title="DPG到DDPG"></a>DPG到DDPG</h3><p>先来看下基于Q值的随机策略梯度的梯度计算公式<br>$$<br>\nabla_{\theta}J(\pi_{\theta}) = E_{s\sim\rho^{\pi}, a\sim\pi_{\theta}}[\nabla_{\theta}log \pi_{\theta}(s,a)Q_{\pi}(s,a)]<br>$$<br>其中，$\rho^{\pi}$是状态的采样空间，$\nabla_{\theta}log \pi_{\theta}(s,a)$是分值函数，可以看出随机策略梯度需要在整个动作空间$\pi_\theta$进行采样。</p>
+<p>而DPG基于Q值的梯度计算公式为：<br>$$<br>\nabla_{\theta}J(\pi_{\theta}) = E_{s\sim\rho^{\pi}}[\nabla_{\theta} \pi_{\theta}(s)\nabla_{a}Q_{\pi}(s,a)|<em>{a=\pi</em>{\theta}(s)}]<br>$$<br>与随机策略梯度相比，少了对动作的积分，多了Q函数对动作的倒数</p>
+<p>从DPG到DDPG得过程可以类比DQN到DDQN的过程，将网络结构分为当前网络和目标网络。因为DPG本身就有Actor网络和Critic两个网络，所以改进后就有四个网络：<strong>Actor目标网络、Actor当前网络、Critic目标网络、Critic当前网络</strong>。其中，两个Actor网络的结构相同，两个Critic网络的结构相同。</p>
+<h3 id="DDPG原理"><a href="#DDPG原理" class="headerlink" title="DDPG原理"></a>DDPG原理</h3><p><strong>Actor当前网络</strong>：根据当前状态$S$选择当前动作$A$，获得状态$S’$和奖励$R$；负责迭代更新策略网络参数$\theta$</p>
+<p><strong>Actor目标网络</strong>：经验回放池采样的下一状态$S’$使用贪婪法选择动作$A’$，网络参数$\theta’$定期从$\theta$复制</p>
+<p><strong>Critic当前网络</strong>：计算当前Q值$Q(S,A,w)$；负责迭代更新价值网络参数$w$，目标Q值$y_i = R+\gamma Q’(S’,A’,w’)$</p>
+<p><strong>Critic目标网络</strong>：基于经验回放池和Actor目标网络提供的$S’,A’$计算目标Q值中的$Q’(S’,A’,w’)$部分，网络参数$w’$定期从$w$复制</p>
+<p>DDPG从当前网络到目标网络的复制与DDQN不一样，DDQN直接将当前Q网络的参数复制到目标Q网络，即$w’=w$。DDPG没有采用这种硬更新方式，而是<strong>采用软更新</strong>，即每次参数只更新一点点：<br>$$<br>w’ \gets \tau w+ (1-\tau)w’<br>$$</p>
+<p>$$<br>\theta’ \gets \tau \theta+ (1-\tau)\theta’<br>$$</p>
+<p>其中$\tau$为更新系数，一般取值较小，如0.1或者0.01</p>
+<p>为了学习过程增加一些随机性，增加学习的覆盖面，DDPG会对选出来的动作$A$增加一定的噪声\mathcal{N}，即：<br>$$<br>A = \pi_{\theta}(S) + \mathcal{N}<br>$$<br>然后是DDPG的损失函数，首先是Critic当前网络，<strong>仍然是采用均方误差</strong>：<br>$$<br>J(w) =\frac{1}{m}\sum\limits_{j=1}^m(y_j-Q(\phi(S_j),A_j,w))^2<br>$$<br>但是<strong>由于是确定性策略，Actor当前网络的损失函数就和之前的PG，A3C不同了</strong>:<br>$$<br>\nabla_J(\theta) = \frac{1}{m}\sum\limits_{j=1}^m[\nabla_{a}Q_(s_i,a_i,w)|<em>{s=s_i,a=\pi</em>{\theta}(s)}\nabla_{\theta} \pi_{\theta(s)}|<em>{s=s_i}]<br>$$<br>因为采用确定性策略梯度，所以当对同一状态，如果输出两个不同的动作$a_1$,$a_2$，则在Critic当前网络中会得到两个Q值：$Q_1,Q_2$。这时候就比较两者，如果$Q_1&gt;Q_2$，就增加$a_1$的概率，降低$a_2$的概率，因为Actor想要得到更大的Q值。所以Actor的损失可以理解为得到的Q值越大损失越小，Q值越小损失越大，因此只要对Critic当前网络返回的Q值加个负号即可：<br>$$<br>J(\theta) =  -\frac{1}{m}\sum\limits</em>{j=1}^m Q_(s_i,a_i,w)<br>$$</p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>输入：<strong>Actor当前网络，Actor目标网络，Critic当前网络，Critic目标网络,参数分别为$\theta,\theta′,w,w′$,衰减因子$\gamma$, 软更新系数$\tau$,批量梯度下降的样本数$m$,目标Q网络参数更新频率$C$,最大迭代次数$T$,随机噪音函数$\mathcal{N}$</strong></p>
+<p>输出：<strong>最优Actor当前网络参数$\theta$,Critic当前网络参数$w$</strong></p>
+<ol>
+<li><p>随机初始化$\theta,w,w’=w,\theta’=theta$,清空经验回放的集合D</p>
+</li>
+<li><p>for i form 1 to T:</p>
+<p>1) 初始化$S$为当前状态序列的第一个状态，拿到其特征向量$\phi(S)$</p>
+<p>2) 在Actor当前网络基于状态$S$得到动作$A =\pi_{\theta}(\phi(S)) + \mathcal{N}$</p>
+<p>3) 执行动作A，得到新状态$S’$，奖励$R$，是否终止状态$is_end$</p>
+<p>4) 将${\phi(S),A,R,\phi(S’),is_end}$这个五元组存入经验回放集合$D$</p>
+<p>5) $S=S’$</p>
+<p>6) 从经验回放集合$D$中采样$m$个样本${\phi(S_j),A_j,R_j,\phi(S’<em>j),is_end_j}, j=1,2.,,,m$，计算目标Q值$y_j$：<br>$$<br>y_j= \begin{cases} R_j&amp; {is_end_j; is ;true}\ R_j + \gamma Q’(\phi(S’_j),\pi</em>{ \theta’}(\phi(S’<em>j)),w’)&amp; {is_end_j; is ;false} \end{cases}<br>$$<br>7) 使用均方误差损失函数$\frac{1}{m}\sum\limits</em>{j=1}^m(y_j-Q(\phi(S_j),A_j,w))^2$，通过神经网络反向传播更新Critic当前网络的所有参数$w$</p>
+<p>8) 使用$J(\theta) =  -\frac{1}{m}\sum\limits_{j=1}^m Q_(s_i,a_i,\theta)$，通过神经网路反向传播更新Actor当前网络的所有参数$\theta$</p>
+<p>9) $if\quaadT%C==1$，更新Critic目标网络和Actor目标网络参数：<br>$$<br>w’ \gets \tau w+ (1-\tau)w’<br>$$</p>
+</li>
+</ol>
+<p>$$<br>\theta’ \gets \tau \theta+ (1-\tau)\theta’<br>$$</p>
+<p>​      10) 如果$S’$是终止状态，当前轮迭代完毕，否则转到步骤2)</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>DDPG借鉴了DDQN的思想，通过增加双网络和经验回放，以及对Actor梯度误差损失函数的改进，比较好的解决了Actor-Critic难以收敛的问题。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-07-06T06:47:57.473Z" itemprop="dateUpdated">2021-07-06 14:47:57</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" target="_blank" rel="external">https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Deterministic-Policy-Gradient/" rel="tag">Deep Deterministic Policy Gradient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Based-RL/" rel="tag">Policy-Based RL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&title=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&title=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/08/10/%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">基于模型的强化学习方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/08/05/A3C/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">A3C</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&title=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&title=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《强化学习 Deep Deterministic Policy Gradient》 — 我的技术笔记&url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2020/08/06/Deep%20Deterministic%20Policy%20Gradient/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
