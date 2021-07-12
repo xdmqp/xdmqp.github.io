@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java类文件结构 | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,JVM,字节码文件">
+    <meta name="description" content="概述在Java中，能够被JVM理解的代码叫做字节码文件也就是.class文件。Java通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时保留解释型语言可移植的特点。由于字节码文件不面向一种特定的操作系统，因此，只有有虚拟机，Java程序无需重新编译就可以在不同操作系统的计算机上运行。 Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行在 Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类文件结构">
+<meta property="og:url" content="https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="概述在Java中，能够被JVM理解的代码叫做字节码文件也就是.class文件。Java通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时保留解释型语言可移植的特点。由于字节码文件不面向一种特定的操作系统，因此，只有有虚拟机，Java程序无需重新编译就可以在不同操作系统的计算机上运行。 Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行在 Ja">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktop%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png">
+<meta property="og:image" content="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/16d5ec47609818fc.jpeg">
+<meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png">
+<meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E5%AD%97%E6%AE%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084342859.png">
+<meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E6%96%B9%E6%B3%95%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084248965.png">
+<meta property="article:published_time" content="2021-07-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-10T15:07:24.706Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="字节码文件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktop%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java类文件结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java类文件结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-07-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2021-07-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文件结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">文件结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔数-Magic-Number"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">魔数(Magic Number)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Class文件版本号-Minor-amp-Major-Version"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Class文件版本号(Minor&amp;Major Version)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常量池-Constant-Pool"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">常量池(Constant Pool)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问标志-Access-Flags"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">访问标志(Access Flags)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#当前类-This-Class-、父类-Super-Class-、接口-Interfaces-索引集合"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">当前类(This Class)、父类(Super Class)、接口(Interfaces)索引集合</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字段表集合-Fields"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">字段表集合(Fields)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#field-info结构"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">field info结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字段表access-flag的取值"><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">字段表access_flag的取值</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法表集合-Methods"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">方法表集合(Methods)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#method-info结构"><span class="post-toc-number">2.7.1.</span> <span class="post-toc-text">method_info结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法表access-flag的取值"><span class="post-toc-number">2.7.2.</span> <span class="post-toc-text">方法表access_flag的取值</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#属性表集合-Attributes"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">属性表集合(Attributes)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-class文件结构"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java类文件结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-07-10 00:00:00" datetime="2021-07-09T16:00:00.000Z"  itemprop="datePublished">2021-07-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在Java中，能够被JVM理解的代码叫做字节码文件也就是.class文件。Java通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时保留解释型语言可移植的特点。由于字节码文件不面向一种特定的操作系统，因此，只有有虚拟机，Java程序无需重新编译就可以在不同操作系统的计算机上运行。</p>
+<p>Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行在 Java 虚拟机之上。.class文件是不同语言与JVM之间的桥梁，同时也是支持Java跨平台的重要原因。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktop类文件结构概览.png" alt="不同语言编译成class文件" title="">
+                </div>
+                <div class="image-caption">不同语言编译成class文件</div>
+            </figure>
+
+<h1 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h1><p>根据Java虚拟机规范，class文件通过<code>ClassFile</code>定义，结构如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic; <span class="comment">//Class 文件的标志</span></span><br><span class="line">    u2             minor_version;<span class="comment">//Class 的小版本号</span></span><br><span class="line">    u2             major_version;<span class="comment">//Class 的大版本号</span></span><br><span class="line">    u2             constant_pool_count;<span class="comment">//常量池的数量</span></span><br><span class="line">    cp_info        constant_pool[constant_pool_count-<span class="number">1</span>];<span class="comment">//常量池</span></span><br><span class="line">    u2             access_flags;<span class="comment">//Class 的访问标记</span></span><br><span class="line">    u2             this_class;<span class="comment">//当前类</span></span><br><span class="line">    u2             super_class;<span class="comment">//父类</span></span><br><span class="line">    u2             interfaces_count;<span class="comment">//接口</span></span><br><span class="line">    u2             interfaces[interfaces_count];<span class="comment">//一个类可以实现多个接口</span></span><br><span class="line">    u2             fields_count;<span class="comment">//Class 文件的字段属性</span></span><br><span class="line">    field_info     fields[fields_count];<span class="comment">//一个类会可以有多个字段</span></span><br><span class="line">    u2             methods_count;<span class="comment">//Class 文件的方法数量</span></span><br><span class="line">    method_info    methods[methods_count];<span class="comment">//一个类可以有个多个方法</span></span><br><span class="line">    u2             attributes_count;<span class="comment">//此类的属性表中的属性数</span></span><br><span class="line">    attribute_info attributes[attributes_count];<span class="comment">//属性表集合</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/16d5ec47609818fc.jpeg" alt="Class文件结构" style="zoom: 50%;" />
+
+<h2 id="魔数-Magic-Number"><a href="#魔数-Magic-Number" class="headerlink" title="魔数(Magic Number)"></a>魔数(Magic Number)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u4             magic; <span class="comment">//Class 文件的标志</span></span><br></pre></td></tr></table></figure>
+
+<p>每个class文件的前4个字节成为魔数(Magic Number),它的唯一作用是<strong>确定这个文件是否为一个能被虚拟机接收的class文件。</strong></p>
+<h2 id="Class文件版本号-Minor-amp-Major-Version"><a href="#Class文件版本号-Minor-amp-Major-Version" class="headerlink" title="Class文件版本号(Minor&amp;Major Version)"></a>Class文件版本号(Minor&amp;Major Version)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u2             minor_version;<span class="comment">//Class 的小版本号</span></span><br><span class="line">u2             major_version;<span class="comment">//Class 的大版本号</span></span><br></pre></td></tr></table></figure>
+
+<p>紧接着魔数的四个字节存储的是 Class 文件的版本号：第 5 和第 6 位是<strong>次版本号</strong>，第 7 和第 8 位是<strong>主版本号</strong>。</p>
+<p>每当 Java 发布大版本（比如 Java 8，Java9）的时候，主版本号都会加 1。你可以使用 <code>javap -v</code> 命令来快速查看 Class 文件的版本号信息。</p>
+<h2 id="常量池-Constant-Pool"><a href="#常量池-Constant-Pool" class="headerlink" title="常量池(Constant Pool)"></a>常量池(Constant Pool)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u2             constant_pool_count;<span class="comment">//常量池的数量</span></span><br><span class="line">cp_info        constant_pool[constant_pool_count-<span class="number">1</span>];<span class="comment">//常量池</span></span><br></pre></td></tr></table></figure>
+
+<p>紧接着主次版本号之后的是常量池，常量池的数量是 <code>constant_pool_count-1</code>（<strong>常量池计数器是从 1 开始计数的，将第 0 项常量空出来是有特殊考虑的，索引值为 0 代表“不引用任何一个常量池项”</strong>）。</p>
+<p>常量池主要存放两大常量：字面量和符号引用。字面量比较接近于 Java 语言层面的的常量概念，如文本字符串、声明为 final 的常量值等。而符号引用则属于编译原理方面的概念。包括下面三类常量：</p>
+<ul>
+<li>类和接口的全限定名</li>
+<li>字段的名称和描述符</li>
+<li>方法的名称和描述符</li>
+</ul>
+<p>常量池中每一项常量都是一个表，这 14 种表有一个共同的特点：<strong>开始的第一位是一个 u1 类型的标志位 -tag 来标识常量的类型，代表当前这个常量属于哪种常量类型．</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>标志（tag）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CONSTANT_utf8_info</td>
+<td>1</td>
+<td>UTF-8 编码的字符串</td>
+</tr>
+<tr>
+<td>CONSTANT_Integer_info</td>
+<td>3</td>
+<td>整形字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Float_info</td>
+<td>4</td>
+<td>浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Long_info</td>
+<td>５</td>
+<td>长整型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Double_info</td>
+<td>６</td>
+<td>双精度浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Class_info</td>
+<td>７</td>
+<td>类或接口的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_String_info</td>
+<td>８</td>
+<td>字符串类型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Fieldref_info</td>
+<td>９</td>
+<td>字段的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_Methodref_info</td>
+<td>10</td>
+<td>类中方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_InterfaceMethodref_info</td>
+<td>11</td>
+<td>接口中方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_NameAndType_info</td>
+<td>12</td>
+<td>字段或方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_MothodType_info</td>
+<td>16</td>
+<td>标志方法类型</td>
+</tr>
+<tr>
+<td>CONSTANT_MethodHandle_info</td>
+<td>15</td>
+<td>表示方法句柄</td>
+</tr>
+<tr>
+<td>CONSTANT_InvokeDynamic_info</td>
+<td>18</td>
+<td>表示一个动态方法调用点</td>
+</tr>
+</tbody></table>
+<h2 id="访问标志-Access-Flags"><a href="#访问标志-Access-Flags" class="headerlink" title="访问标志(Access Flags)"></a>访问标志(Access Flags)</h2><p>在常量池结束之后，紧接着的两个字节代表访问标志，这个标志用于识别一些类或者接口层次的访问信息，包括：这个 Class 是类还是接口，是否为 <code>public</code> 或者 <code>abstract</code> 类型，如果是类的话是否声明为 <code>final</code> 等等。</p>
+<p>类访问和属性修饰符:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png" alt="类访问和属性修饰符" title="">
+                </div>
+                <div class="image-caption">类访问和属性修饰符</div>
+            </figure>
+
+<h2 id="当前类-This-Class-、父类-Super-Class-、接口-Interfaces-索引集合"><a href="#当前类-This-Class-、父类-Super-Class-、接口-Interfaces-索引集合" class="headerlink" title="当前类(This Class)、父类(Super Class)、接口(Interfaces)索引集合"></a>当前类(This Class)、父类(Super Class)、接口(Interfaces)索引集合</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u2             this_class;<span class="comment">//当前类</span></span><br><span class="line">u2             super_class;<span class="comment">//父类</span></span><br><span class="line">u2             interfaces_count;<span class="comment">//接口</span></span><br><span class="line">u2             interfaces[interfaces_count];<span class="comment">//一个类可以实现多个接口</span></span><br></pre></td></tr></table></figure>
+
+<p>类索引用于确定这个类的全限定名，父类索引用于确定这个类的父类的全限定名，由于 Java 语言的单继承，所以父类索引只有一个，除了 <code>java.lang.Object</code> 之外，所有的 java 类都有父类，因此除了 <code>java.lang.Object</code> 外，所有 Java 类的父类索引都不为 0。</p>
+<p>接口索引集合用来描述这个类实现了那些接口，这些被实现的接口将按 <code>implements</code> (如果这个类本身是接口的话则是<code>extends</code>) 后的接口顺序从左到右排列在接口索引集合中。</p>
+<h2 id="字段表集合-Fields"><a href="#字段表集合-Fields" class="headerlink" title="字段表集合(Fields)"></a>字段表集合(Fields)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u2             fields_count;<span class="comment">//Class 文件的字段的个数</span></span><br><span class="line">field_info     fields[fields_count];<span class="comment">//一个类会可以有个字段</span></span><br></pre></td></tr></table></figure>
+
+<p>字段表（field info）用于<strong>描述接口或类中声明的变量</strong>。字段<strong>包括类级变量以及实例变量</strong>，但<strong>不包括在方法内部声明的局部变量。</strong></p>
+<h3 id="field-info结构"><a href="#field-info结构" class="headerlink" title="field info结构"></a>field info结构</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E5%AD%97%E6%AE%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png" alt="字段表的结构" title="">
+                </div>
+                <div class="image-caption">字段表的结构</div>
+            </figure>
+
+<ul>
+<li><strong>access_flags:</strong> 字段的作用域（<code>public</code> ,<code>private</code>,<code>protected</code>修饰符），是实例变量还是类变量（<code>static</code>修饰符）,可否被序列化（transient 修饰符）,可变性（final）,可见性（volatile 修饰符，是否强制从主内存读写）。</li>
+<li><strong>name_index:</strong> 对常量池的引用，表示的字段的名称；</li>
+<li><strong>descriptor_index:</strong> 对常量池的引用，表示字段和方法的描述符；</li>
+<li><strong>attributes_count:</strong> 一个字段还会拥有一些额外的属性，attributes_count 存放属性的个数；</li>
+<li><strong>attributes[attributes_count]:</strong> 存放具体属性具体内容。</li>
+</ul>
+<p>上述这些信息中，各个修饰符都是布尔值，要么有某个修饰符，要么没有，很适合使用标志位来表示。而字段叫什么名字、字段被定义为什么数据类型这些都是无法固定的，只能引用常量池中常量来描述。</p>
+<h3 id="字段表access-flag的取值"><a href="#字段表access-flag的取值" class="headerlink" title="字段表access_flag的取值"></a>字段表access_flag的取值</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084342859.png" alt="字段的 access_flag 的取值" title="">
+                </div>
+                <div class="image-caption">字段的 access_flag 的取值</div>
+            </figure>
+
+<h2 id="方法表集合-Methods"><a href="#方法表集合-Methods" class="headerlink" title="方法表集合(Methods)"></a>方法表集合(Methods)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u2             methods_count;<span class="comment">//Class 文件的方法的数量</span></span><br><span class="line">method_info    methods[methods_count];<span class="comment">//一个类可以有个多个方法</span></span><br></pre></td></tr></table></figure>
+
+<p>methods_count 表示方法的数量，而 method_info 表示方法表。</p>
+<p>Class 文件存储格式中<strong>对方法的描述与对字段的描述几乎采用了完全一致的方式。</strong>方法表的结构如同字段表一样，依次包括了访问标志、名称索引、描述符索引、属性表集合几项。</p>
+<h3 id="method-info结构"><a href="#method-info结构" class="headerlink" title="method_info结构"></a>method_info结构</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/%E6%96%B9%E6%B3%95%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png" alt="方法表的结构" title="">
+                </div>
+                <div class="image-caption">方法表的结构</div>
+            </figure>
+
+<h3 id="方法表access-flag的取值"><a href="#方法表access-flag的取值" class="headerlink" title="方法表access_flag的取值"></a>方法表access_flag的取值</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084248965.png" alt="方法表的 access_flag 取值" title="">
+                </div>
+                <div class="image-caption">方法表的 access_flag 取值</div>
+            </figure>
+
+<p>注意：因为<code>volatile</code>修饰符和<code>transient</code>修饰符不可以修饰方法，所以方法表的访问标志中没有这两个对应的标志，但是增加了<code>synchronized</code>、<code>native</code>、<code>abstract</code>等关键字修饰方法，所以也就多了这些关键字对应的标志。</p>
+<h2 id="属性表集合-Attributes"><a href="#属性表集合-Attributes" class="headerlink" title="属性表集合(Attributes)"></a>属性表集合(Attributes)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u2             attributes_count;<span class="comment">//此类的属性表中的属性数</span></span><br><span class="line">attribute_info attributes[attributes_count];<span class="comment">//属性表集合</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Class 文件，字段表，方法表中都可以携带自己的属性表集合，以用于描述某些场景专有的信息。与 Class 文件中其它的数据项目要求的顺序、长度和内容不同，属性表集合的限制稍微宽松一些，不再要求各个属性表具有严格的顺序，并且只要不与已有的属性名重复，任何人实现的编译器都可以向属性表中写 入自己定义的属性信息，Java 虚拟机运行时会忽略掉它不认识的属性。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/类文件结构?id=类文件结构" target="_blank" rel="noopener">类文件结构</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" target="_blank" rel="external">https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/" rel="tag">字节码文件</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&title=《Java类文件结构》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&title=《Java类文件结构》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java类文件结构》 — 我的技术笔记&url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/06/30/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java内存泄漏与内存溢出</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&title=《Java类文件结构》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&title=《Java类文件结构》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java类文件结构》 — 我的技术笔记&url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2021/07/10/class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
