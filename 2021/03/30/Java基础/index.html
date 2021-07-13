@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java基础 | 我的技术笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,Java基础">
+    <meta name="description" content="数据类型基本类型：1byte(8),char(16),short(16),int(32),float(32),long(64),double(64),boolean  包装类型与基本类型一 一对应，两者之间的赋值通过自动装箱和拆箱完成。 1Byte、Character、Short、Integer、Float、Long、Double、Boolean  缓存池new Integer(123)每次新建一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="我的技术笔记">
+<meta property="og:description" content="数据类型基本类型：1byte(8),char(16),short(16),int(32),float(32),long(64),double(64),boolean  包装类型与基本类型一 一对应，两者之间的赋值通过自动装箱和拆箱完成。 1Byte、Character、Short、Integer、Float、Long、Double、Boolean  缓存池new Integer(123)每次新建一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/xdmqp/myPic/main/img/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+<meta property="article:published_time" content="2021-03-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-13T14:33:10.277Z">
+<meta property="article:author" content="登高必自">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xdmqp/myPic/main/img/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="我的技术笔记" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">登高必自</h5>
+          <a href="mailto:1254723220@qq.com" title="1254723220@qq.com" class="mail">1254723220@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/xdmqp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java基础</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-03-29T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2021-03-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数据类型"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本类型："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本类型：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#包装类型"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">包装类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓存池"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">缓存池</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本数据类型和引用数据类型的区别"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">基本数据类型和引用数据类型的区别</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#String"><span class="post-toc-number">2.</span> <span class="post-toc-text">String</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#不可变好处"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">不可变好处</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可以缓存hash值"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">可以缓存hash值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-Pool的需要"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">String Pool的需要</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全性"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">安全性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线程安全"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">线程安全</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#StringBuffer和StringBuilder"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">StringBuffer和StringBuilder</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#String-Pool"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">String Pool</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特性"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">特性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运算"><span class="post-toc-number">3.</span> <span class="post-toc-text">运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参数传递"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">参数传递</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#float与double"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">float与double</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#隐式类型转换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">隐式类型转换</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键字"><span class="post-toc-number">4.</span> <span class="post-toc-text">关键字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#final"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">final</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#static"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">static</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在静态方法中调用非静态成员为什么是非法的"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">在静态方法中调用非静态成员为什么是非法的</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Object通用方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">Object通用方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#概览"><span class="post-toc-number">6.</span> <span class="post-toc-text">概览</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#euqals"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">euqals</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#equals与"><span class="post-toc-number">6.1.1.</span> <span class="post-toc-text">equals与&#x3D;&#x3D;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">6.1.2.</span> <span class="post-toc-text">实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hashCode"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">hashCode</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toString-NaN"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">toString</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#clone"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">clone</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浅拷贝"><span class="post-toc-number">6.4.1.</span> <span class="post-toc-text">浅拷贝</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深拷贝"><span class="post-toc-number">6.4.2.</span> <span class="post-toc-text">深拷贝</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#clone的替代方案：拷贝构造函数或拷贝工厂"><span class="post-toc-number">6.4.3.</span> <span class="post-toc-text">clone的替代方案：拷贝构造函数或拷贝工厂</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#继承"><span class="post-toc-number">7.</span> <span class="post-toc-text">继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问权限"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">访问权限</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抽象类和接口"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">抽象类和接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#super"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">super</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重写和重载"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">重写和重载</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#反射"><span class="post-toc-number">8.</span> <span class="post-toc-text">反射</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要功能（运行时）"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">主要功能（运行时）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要应用"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">主要应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意事项"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">注意事项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#异常"><span class="post-toc-number">9.</span> <span class="post-toc-text">异常</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Error"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">Error</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Exception"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">Exception</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#泛型"><span class="post-toc-number">10.</span> <span class="post-toc-text">泛型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#泛型类"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">泛型类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#泛型接口"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">泛型接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#泛型方法"><span class="post-toc-number">10.3.</span> <span class="post-toc-text">泛型方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用通配符"><span class="post-toc-number">10.4.</span> <span class="post-toc-text">常用通配符</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#注解"><span class="post-toc-number">11.</span> <span class="post-toc-text">注解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用途"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">用途</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#元注解"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">元注解</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Java基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java基础</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-03-30 00:00:00" datetime="2021-03-29T16:00:00.000Z"  itemprop="datePublished">2021-03-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="基本类型："><a href="#基本类型：" class="headerlink" title="基本类型："></a>基本类型：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>(<span class="number">8</span>),<span class="keyword">char</span>(<span class="number">16</span>),<span class="keyword">short</span>(<span class="number">16</span>),<span class="keyword">int</span>(<span class="number">32</span>),<span class="keyword">float</span>(<span class="number">32</span>),<span class="keyword">long</span>(<span class="number">64</span>),<span class="keyword">double</span>(<span class="number">64</span>),<span class="keyword">boolean</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h2><p>与基本类型一 一对应，两者之间的赋值通过自动装箱和拆箱完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Byte、Character、Short、Integer、Float、Long、Double、Boolean</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓存池"><a href="#缓存池" class="headerlink" title="缓存池"></a>缓存池</h2><p>new Integer(123)每次新建一个对象，Integer.valueOf(123)会使用缓冲池中的对象，多次调用会取得同一对象的引用Java8中基本类型对应缓冲池如下：</p>
+<p>boolean:true,false</p>
+<p>byte:-128~127</p>
+<p>short:-128~127</p>
+<p>int:-128~127</p>
+<p>long:-128~127</p>
+<p>char:\u0000~\u007F</p>
+<p>使用这些基本类型的包装类型时，如果数值范围在缓冲池范围内，就直接使用缓冲池中的对象</p>
+<h2 id="基本数据类型和引用数据类型的区别"><a href="#基本数据类型和引用数据类型的区别" class="headerlink" title="基本数据类型和引用数据类型的区别"></a>基本数据类型和引用数据类型的区别</h2><p>基本类型变量名指向具体值，引用数据类型变量名指向存储数据对象的内存地址基本类型变量声明后，jvm会立即给它分配存储空间，引用数据类型变量在声明后不会立即分配内存空间，只存储一个内存地址基本类型使用时需要赋值具体值，使用==判断，引用数据类型使用时可以赋值null，判断一般使用equals方法</p>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="不可变好处"><a href="#不可变好处" class="headerlink" title="不可变好处"></a>不可变好处</h2><h3 id="可以缓存hash值"><a href="#可以缓存hash值" class="headerlink" title="可以缓存hash值"></a>可以缓存hash值</h3><p>因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<h3 id="String-Pool的需要"><a href="#String-Pool的需要" class="headerlink" title="String Pool的需要"></a>String Pool的需要</h3><p>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。</p>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><p>String 经常作为参数，String 不可变性可以保证参数不可变。例如在作为网络连接参数的情况下如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 的那一方以为现在连接的是其它主机，而实际情况却不一定是。</p>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>String 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
+<h2 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h2><p>StringBuffer和StringBuilder都是可变的其中StringBuffer线程安全，内部使用synchronized同步，StringBuilder不是线程安全的</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>操作少量的数据: 适用 <code>String</code></li>
+<li>单线程操作字符串缓冲区下操作大量数据: 适用 <code>StringBuilder</code></li>
+<li>多线程操作字符串缓冲区下操作大量数据: 适用 <code>StringBuffer</code></li>
+</ol>
+<h2 id="String-Pool"><a href="#String-Pool" class="headerlink" title="String Pool"></a>String Pool</h2><p>字符串常量池保存着所有字符串字面量(String=&quot;xxx&quot;)，在编译时期确定。另外，String类型还可以调用intern方法在运行过程中将字符串添加到String Pool中。当调用intern方法时，如果常量池中已经存在与当前字符串值相等的字符串，则返回常量池中字符串的引用；否则，就在常量池中添加一个字符串，并返回这个字符串的引用。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>引用类型，final，不可被继承，不可变，java8中用char数组实现，java9中用byte数组加coder标识实现</p>
+<h1 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h1><h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>形式：值传递</p>
+<p><strong>Java 程序设计语言总是采用按值调用。也就是说，方法得到的是所有参数值的一个拷贝，也就是说，方法不能修改传递给它的任何参数变量的内容。</strong></p>
+<h2 id="float与double"><a href="#float与double" class="headerlink" title="float与double"></a>float与double</h2><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>java不能隐式执行向下转型</p>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>声明数据为常量，对于基本类型，使数值不变，对于引用类型，使引用不变；</p>
+<p>声明方法不能被子类重写，private方法被隐式指定为final；</p>
+<p>声明类不允许被继承</p>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><ol>
+<li>静态变量（类变量）</li>
+<li>静态方法：类方法，不依赖于任何实例，必须要有实现，不能是抽象方法，静态方法只能访问所在类的静态字段和方法，方法中不能有this和super关键字</li>
+<li>静态语句块：在类初始化时执行一次</li>
+<li>静态内部类：非静态内部类依赖于外部类的实例，也就是说需要先创建外部类实例，才能用这个实例去创建非静态内部类。而静态内部类不需要。</li>
+<li>静态导包：在使用静态变量和方法时不用再指明 ClassName，从而简化代码，但可读性大大降低。</li>
+</ol>
+<p><strong>初始化时，静态变量和静态语句块优先于实例变量和普通语句块，最后才是构造函数的初始化</strong></p>
+<p><strong>存在继承的情况下，初始化顺序为：</strong></p>
+<p>父类（静态变量、静态语句块）</p>
+<p>子类（静态变量、静态语句块）</p>
+<p>父类（实例变量、普通语句块）</p>
+<p>父类（构造函数）</p>
+<p>子类（实例变量、普通语句块）</p>
+<p>子类（构造函数）</p>
+<h3 id="在静态方法中调用非静态成员为什么是非法的"><a href="#在静态方法中调用非静态成员为什么是非法的" class="headerlink" title="在静态方法中调用非静态成员为什么是非法的"></a>在静态方法中调用非静态成员为什么是非法的</h3><p>这个需要结合 JVM 的相关知识，<strong>静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，然后通过类的实例对象去访问</strong>。在类的非静态成员不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。</p>
+<h1 id="Object通用方法"><a href="#Object通用方法" class="headerlink" title="Object通用方法"></a>Object通用方法</h1><h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; <span class="title">getClass</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notifyAll</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="euqals"><a href="#euqals" class="headerlink" title="euqals"></a>euqals</h2><p>满足5个条件：自反性、对称性、传递性、一致性、与null的比较</p>
+<ul>
+<li>自反性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.equals(x); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对称性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.equals(y) == y.equals(x); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>传递性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x.equals(y) &amp;&amp; y.equals(z)) </span><br><span class="line">       x.equals(z); <span class="comment">// true;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一致性(多次调用equals的结果不变)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x.equals(y) &amp;&amp; y.equals(z)) x.equals(z); <span class="comment">// true;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>与null的比较，任何不会null的对象调用equals(null)的结果都为false</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.equals(<span class="keyword">null</span>); <span class="comment">// false;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h3><ul>
+<li>对于基本类型，== 判断两个值是否相等，基本类型没有 equals() 方法。</li>
+<li>对于引用类型，== 判断两个变量是否引用同一个对象，而 equals() 判断引用的对象是否等价。</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>判断是否是同一个对象的引用，如果是直接返回true；</p>
+<p>判断是否是同一个类型，如果不是直接返回false；</p>
+<p>将object对象进行转型，判断每个关键域是否相等。</p>
+<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p><code>hashCode()</code> 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。<code>hashCode()</code>定义在 JDK 的 <code>Object</code> 类中，这就意味着 Java 中的任何类都包含有 <code>hashCode()</code> 函数。另外需要注意的是： <code>Object</code> 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法通常用来将对象的 内存地址 转换为整数之后返回。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>等价的两个对象的哈希值一定相同，哈希值相同的两个对象不一定等价</p>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h2><h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><p>一个类必须要显式重写clone()方法并实现Cloneable的接口，其他类才能直接调用该类实例的clone()方法</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><blockquote>
+<p>对于基础数据类型采用值传递，对于引用类型，拷贝对象和原始对象的引用类型引用同一个对象</p>
+</blockquote>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><blockquote>
+<p>对于基础数据类型采用值传递，对于引用类型，拷贝对象和原始对象的引用类型引用不同对象，即创建一个新对象，并复制其内容</p>
+</blockquote>
+<h3 id="clone的替代方案：拷贝构造函数或拷贝工厂"><a href="#clone的替代方案：拷贝构造函数或拷贝工厂" class="headerlink" title="clone的替代方案：拷贝构造函数或拷贝工厂"></a>clone的替代方案：拷贝构造函数或拷贝工厂</h3><h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h2><ol>
+<li>子类拥有父类对象所有的属性和方法（包括私有属性和私有方法），但是父类中的私有属性和方法子类是无法访问，<strong>只是拥有</strong>。</li>
+<li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展。</li>
+<li>子类可以用自己的方式实现父类的方法。</li>
+</ol>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><p>抽象类不能被实例化，只能被继承，包含抽象方法的类只能是抽象类；接口是抽象类的延伸，Java8之后，接口也支持了默认的方法实现（维护成本太高），接口成员的访问权限只能是 public，字段只能是static和final的</p>
+<p>比较：</p>
+<p>抽象类提供一种IS-A关系，需要满足里式替换原则，接口提供一种LIKE-A关系（组合）一个类可以实现多个接口，但不能继承多个抽象类</p>
+<p>接口的字段都是static和final类型的，成员访问权限只能是public，抽象类没有这些限制</p>
+<h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><p>子类可以用super()函数访问父类的构造函数，另外，子类可以通过super关键字引用父类的方法实现</p>
+<h2 id="重写和重载"><a href="#重写和重载" class="headerlink" title="重写和重载"></a>重写和重载</h2><p>重写：子类实现了一个与父类在方法声明上完全相同（方法名和参数列表相同）的一个方法子类重写父类方法，需要满足三个限制条件：<strong>子类方法的访问权限必须大于等于父类方法；子类方法的返回类型必须是父类方法返回类型或为其子类型；子类方法抛出的异常类型必须是父类抛出异常类型或为其子类型。</strong></p>
+<p>重载：存在于同一个类中，指一个方法与现有方法名称相同，但是参数类型、个数、顺序至少有一个不同。注意：返回值不同，其他都相同不算是重载</p>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p> Java特征之一，允许运行中的Java程序获取自身信息，并且可以操作类或对象的所有属性和方法。</p>
+<h2 id="主要功能（运行时）"><a href="#主要功能（运行时）" class="headerlink" title="主要功能（运行时）"></a>主要功能（运行时）</h2><p>获得Class对象判断一个对象是否是某个类的实例（isInstance方法）</p>
+<p>构造任意一个类的对象（newInstance方法）</p>
+<p>判断任意一个类所包含的成员变量和方法</p>
+<p>调用任意一个对象的方法（Invoke方法）</p>
+<h2 id="主要应用"><a href="#主要应用" class="headerlink" title="主要应用"></a>主要应用</h2><p>开发各种通用配置化框架，在程序运行时根据配置文件加载不同对象或类，调用不同方法</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>反射会额外消耗一定的系统资源，如果不需要动态创建一个对象，则不需要用反射。<strong>由于反射调用方法时无视权限检查，因此可能会破坏封装性而导致安全问题，并且由于泛型参数的安全检查发生在编译时，反射可以无视泛型参数的安全检查。</strong></p>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/xdmqp/myPic/main/img/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<h2 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h2><p>JVM无法处理的错误</p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><ol>
+<li>受检异常，用try…catch语句捕获并进行处理，可以从异常中恢复，常见的受检查异常有： IO 相关的异常、<code>ClassNotFoundException</code> 、<code>SQLException</code>等。</li>
+<li>非受检异常，程序运行时错误，会导致程序崩溃且无法恢复。<code>RuntimeException</code> 及其子类都统称为非受检查异常，例如：<code>NullPointerException</code>、<code>NumberFormatException</code>（字符串转换为数字）、<code>ArrayIndexOutOfBoundsException</code>（数组越界）、<code>ClassCastException</code>（类型转换错误）、<code>ArithmeticException</code>（算术错误）等。</li>
+</ol>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>用来避免程序编译阶段的一些类型转换异常问题</p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型</span></span><br><span class="line"><span class="comment">//在实例化泛型类时，必须指定T的具体类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">method</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现泛型接口，不指定类型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GeneratorImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现泛型接口，指定类型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GeneratorImpl</span> <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(E[] inputArray)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (E element : inputArray) &#123;</span><br><span class="line">        System.out.printf(<span class="string">"%s "</span>, element);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用通配符"><a href="#常用通配符" class="headerlink" title="常用通配符"></a>常用通配符</h2><ul>
+<li>？ 表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个 java 类型</li>
+<li>K V (key value) 分别代表 java 键值中的 Key Value</li>
+<li>E (element) 代表 Element</li>
+</ul>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。</p>
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>生成文档，例如@param @return等跟踪代码依赖性，实现替代配置文件功能在编译时进行格式检查，如@override放在方法前，编译时就会检查当前方法是否满足重载条件</p>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><ol>
+<li><p>@Documented 是否将注解包含到JavaDoc中</p>
+</li>
+<li><p>@Retention 声明周期</p>
+</li>
+<li><p>@Target 注解用到什么地方</p>
+</li>
+<li><p>@Inherited 是否允许子类继承该注解</p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2021/03/30/Java%E5%9F%BA%E7%A1%80/" target="_blank" rel="external">https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdmqp.github.io">
+            <img src="/img/avatar.jpg" alt="登高必自">
+            登高必自
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&title=《Java基础》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&title=《Java基础》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java基础》 — 我的技术笔记&url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2021/04/13/Java%E5%AE%B9%E5%99%A8/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java容器</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/03/14/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java虚拟机</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>登高必自 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&title=《Java基础》 — 我的技术笔记&pic=https://xdmqp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&title=《Java基础》 — 我的技术笔记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java基础》 — 我的技术笔记&url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/&via=https://xdmqp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://xdmqp.github.io/2021/03/30/Java%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
