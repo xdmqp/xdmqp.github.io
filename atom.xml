@@ -236,35 +236,7 @@
       <category term="大数据" scheme="https://xdmqp.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="https://xdmqp.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
       <category term="Kafka" scheme="https://xdmqp.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flume基础</title>
-    <link href="https://xdmqp.github.io/2020/11/17/Flume%E5%9F%BA%E7%A1%80/"/>
-    <id>https://xdmqp.github.io/2020/11/17/Flume%E5%9F%BA%E7%A1%80/</id>
-    <published>2020-11-16T16:00:00.000Z</published>
-    <updated>2021-07-06T08:37:15.529Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Flume基础"><a href="#Flume基础" class="headerlink" title="Flume基础"></a>Flume基础</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="Flume定义"><a href="#Flume定义" class="headerlink" title="Flume定义"></a>Flume定义</h3><p>Flume 是 Cloudera 提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统。Flume 基于流式架构，灵活简单。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://raw.githubusercontent.com/xdmqp/myPic/main/img/image-20201117170702468.png" alt="image-20201117170702468" title="">                </div>                <div class="image-caption">image-20201117170702468</div>            </figure><h3 id="Flume基础架构"><a href="#Flume基础架构" class="headerlink" title="Flume基础架构"></a>Flume基础架构</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://raw.githubusercontent.com/xdmqp/myPic/main/img/image-20201117170802490.png" alt="image-20201117170802490" title="">                </div>                <div class="image-caption">image-20201117170802490</div>            </figure><p>Agent是一个JVM进程，以事件的形式将数据从源头送至目的地，由三部分组成：Source、Channel、Sink，事件Event是Flume数据传输的基本单元。Event 由 Header 和 Body 两部分组成，Header 用来存放该 event 的一些属性，为 K-V 结构，Body 用来存放该条数据，形式为字节数组。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Flume基础&quot;&gt;&lt;a href=&quot;#Flume基础&quot; class=&quot;headerlink&quot; title=&quot;Flume基础&quot;&gt;&lt;/a&gt;Flume基础&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概
-      
-    
-    </summary>
-    
-    
-      <category term="大数据" scheme="https://xdmqp.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-      <category term="Flume" scheme="https://xdmqp.github.io/tags/Flume/"/>
     
       <category term="大数据" scheme="https://xdmqp.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -295,6 +267,34 @@
       <category term="Linux" scheme="https://xdmqp.github.io/tags/Linux/"/>
     
       <category term="文件目录" scheme="https://xdmqp.github.io/tags/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flume基础</title>
+    <link href="https://xdmqp.github.io/2020/11/17/Flume%E5%9F%BA%E7%A1%80/"/>
+    <id>https://xdmqp.github.io/2020/11/17/Flume%E5%9F%BA%E7%A1%80/</id>
+    <published>2020-11-16T16:00:00.000Z</published>
+    <updated>2021-07-06T08:37:15.529Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Flume基础"><a href="#Flume基础" class="headerlink" title="Flume基础"></a>Flume基础</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="Flume定义"><a href="#Flume定义" class="headerlink" title="Flume定义"></a>Flume定义</h3><p>Flume 是 Cloudera 提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统。Flume 基于流式架构，灵活简单。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://raw.githubusercontent.com/xdmqp/myPic/main/img/image-20201117170702468.png" alt="image-20201117170702468" title="">                </div>                <div class="image-caption">image-20201117170702468</div>            </figure><h3 id="Flume基础架构"><a href="#Flume基础架构" class="headerlink" title="Flume基础架构"></a>Flume基础架构</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://raw.githubusercontent.com/xdmqp/myPic/main/img/image-20201117170802490.png" alt="image-20201117170802490" title="">                </div>                <div class="image-caption">image-20201117170802490</div>            </figure><p>Agent是一个JVM进程，以事件的形式将数据从源头送至目的地，由三部分组成：Source、Channel、Sink，事件Event是Flume数据传输的基本单元。Event 由 Header 和 Body 两部分组成，Header 用来存放该 event 的一些属性，为 K-V 结构，Body 用来存放该条数据，形式为字节数组。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Flume基础&quot;&gt;&lt;a href=&quot;#Flume基础&quot; class=&quot;headerlink&quot; title=&quot;Flume基础&quot;&gt;&lt;/a&gt;Flume基础&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="https://xdmqp.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="大数据" scheme="https://xdmqp.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="Flume" scheme="https://xdmqp.github.io/tags/Flume/"/>
     
   </entry>
   
